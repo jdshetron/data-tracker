@@ -4,15 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Browse · TV &amp; Movie Tracker</title>
-  <meta name="theme-color" content="#121110">
+  <meta name="theme-color" content="#08070c">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="assets/style.css">
+  <script type="importmap">
+    { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
 </head>
 <body>
   <nav class="nav"><div class="nav-inner">
-    <a class="brand" href="index.html"><img src="icons/icon.svg" alt="">TV &amp; Movie Tracker</a>
+    <a class="brand" href="index.html"><img src="icons/icon.svg" alt=""><span>TV <b>&amp;</b> Movie Tracker</span></a>
     <div class="nav-links">
       <a href="index.html">Today</a>
       <a href="browse.html" aria-current="page">Browse</a>
@@ -20,9 +29,17 @@
     </div>
   </div></nav>
 
+  <header class="hero compact">
+    <div class="reveal">
+      <span class="eyebrow"><span class="dot"></span><span id="as-of">Loading…</span></span>
+      <h1>Browse the<br>Lineup</h1>
+      <p class="lede">Filter, search and sort all 28 titles. Star the ones you care about to build a shortlist that stays in this browser. <strong id="count"></strong></p>
+    </div>
+    <div class="hero-stage reveal"><canvas id="hero-3d" aria-label="3D film set with a retro TV showing today's most-viewed titles"></canvas></div>
+  </header>
+
   <main>
-    <h1>Browse</h1>
-    <p class="lede"><span id="as-of">loading…</span> · <span id="count"></span></p>
+    <div class="filmstrip" aria-hidden="true"></div>
     <div id="offline" class="banner" hidden>You're offline. Showing the last data this device loaded.</div>
     <div id="error" class="banner" hidden></div>
 
@@ -35,7 +52,7 @@
         <label>Since last run
           <select id="trend"><option value="">All</option><option value="up">Rising</option><option value="down">Falling</option><option value="flat">No change / new</option></select>
         </label>
-        <label>Min daily views<input id="min-views" type="number" min="0" step="500" placeholder="0" style="width:120px"></label>
+        <label>Min daily views<input id="min-views" type="number" min="0" step="500" placeholder="0" style="width:130px"></label>
         <label>Sort by<select id="sort"></select></label>
         <label class="check"><input id="starred" type="checkbox"> Starred only</label>
       </div>
@@ -55,11 +72,16 @@
 
     <section class="card">
       <h2>★ Your shortlist</h2>
-      <ul id="shortlist" class="moves"></ul>
+      <p class="muted small">Saved in this browser, so it's still here after a reload.</p>
+      <ul id="shortlist" class="shortlist"></ul>
     </section>
   </main>
-  <footer>Click a column header to sort; click again to reverse. Stars are saved in this browser.</footer>
+  <footer>Click a column header to sort; click again to reverse.</footer>
   <script src="assets/app.js"></script>
   <script src="assets/browse.js"></script>
+  <script type="module">
+    import { hero } from "./assets/scene.js";
+    hero(document.getElementById("hero-3d"), screenItems());
+  </script>
 </body>
 </html>

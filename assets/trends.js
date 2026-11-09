@@ -38,7 +38,7 @@ function overTime(rows, dates) {
         labels: dates,
         datasets: shown.map((r, i) => ({
           label: r.item, data: dates.map(d => lookup.get(`${d}|${r.item_id}`) ?? null),
-          borderColor: PALETTE[items.indexOf(r) % PALETTE.length], backgroundColor: PALETTE[items.indexOf(r) % PALETTE.length],
+          borderColor: PALETTE[i % PALETTE.length], backgroundColor: PALETTE[i % PALETTE.length], borderWidth: 2.5,
           tension: .25, spanGaps: true, pointRadius: dates.length < 15 ? 4 : 2,
         })),
       },

@@ -20,7 +20,7 @@
     ["First run", status.first_run_date],
   ];
   document.getElementById("tiles").innerHTML = tiles.map(([l, v]) =>
-    `<div class="tile"><div class="label">${esc(l)}</div><div class="value">${esc(v ?? "—")}</div></div>`).join("");
+    `<div class="tile reveal"><div class="label">${esc(l)}</div><div class="value${String(v).includes("-") ? " date" : ""}">${esc(v ?? "—")}</div></div>`).join("");
 
   document.getElementById("sources").innerHTML = status.sources.map(s => `
     <tr><td>${esc(s.name)}</td>
@@ -28,10 +28,11 @@
       <td class="num">${s.count}</td>
       <td class="muted small">${esc(s.error || "")}</td></tr>`).join("");
 
-  const moves = document.getElementById("moves");
-  moves.innerHTML = m.top.length ? m.top.map(c => `
-    <li><span><strong>${esc(c.item)}</strong></span>
-      <span>${fmtInt(c.old)} → ${fmtInt(c.new)} <strong class="${cls(c.pct)}">${fmtPct(c.pct)}</strong></span></li>`).join("")
+  const biggest = Math.max(1, ...m.top.map(c => Math.abs(c.pct)));
+  document.getElementById("moves").innerHTML = m.top.length ? m.top.map(c => `
+    <li class="ranked"><span class="name">${esc(c.item)}</span>
+      <span class="delta">${fmtInt(c.old)} → ${fmtInt(c.new)}<strong class="${cls(c.pct)}">${fmtPct(c.pct)}</strong></span>
+      <span class="bar-track"><span style="width:${Math.abs(c.pct) / biggest * 100}%;background:var(--${c.pct >= 0 ? "up" : "down"})"></span></span></li>`).join("")
     : `<li class="muted">No moves yet. Moves appear after the second daily run.</li>`;
 
   const name = id => (m.today.get(id) || m.before.get(id) || {}).item || id;
@@ -41,10 +42,10 @@
 
   const pctById = new Map(m.changes.map(c => [c.item_id, c]));
   const latest = [...m.today.values()].sort((a, b) => (b.views ?? 0) - (a.views ?? 0));
-  document.getElementById("latest").innerHTML = latest.map(r => {
+  document.getElementById("latest").innerHTML = latest.map((r, i) => {
     const c = pctById.get(r.item_id);
     const diff = c ? c.new - c.old : null;
-    return `<tr><td>${esc(r.item)}</td><td><span class="pill ${esc(r.category)}">${esc(r.category)}</span></td>
+    return `<tr><td class="rank">${String(i + 1).padStart(2, "0")}</td><td><strong>${esc(r.item)}</strong></td><td><span class="pill ${esc(r.category)}">${esc(r.category)}</span></td>
       <td class="num">${fmtInt(r.views)}</td>
       <td class="num ${cls(diff)}">${diff == null ? "—" : (diff > 0 ? "+" : "") + fmtInt(diff)}</td>
       <td class="num ${cls(c && c.pct)}">${fmtPct(c ? c.pct : null)}</td>

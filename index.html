@@ -5,15 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Today · TV &amp; Movie Tracker</title>
   <meta name="description" content="Daily Wikipedia page views for 28 TV shows and movies.">
-  <meta name="theme-color" content="#121110">
+  <meta name="theme-color" content="#08070c">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="assets/style.css">
+  <script type="importmap">
+    { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
 </head>
 <body>
   <nav class="nav"><div class="nav-inner">
-    <a class="brand" href="index.html"><img src="icons/icon.svg" alt="">TV &amp; Movie Tracker</a>
+    <a class="brand" href="index.html"><img src="icons/icon.svg" alt=""><span>TV <b>&amp;</b> Movie Tracker</span></a>
     <div class="nav-links">
       <a href="index.html" aria-current="page">Today</a>
       <a href="browse.html">Browse</a>
@@ -21,18 +30,43 @@
     </div>
   </div></nav>
 
+  <header class="hero">
+    <div class="reveal">
+      <span class="eyebrow"><span class="dot"></span>Daily Wikipedia views</span>
+      <h1>Today's<br>Top Billing</h1>
+      <p class="lede">Last run <strong id="last-run">loading…</strong></p>
+      <p class="lede small" id="compare"></p>
+    </div>
+    <div class="hero-stage reveal"><canvas id="hero-3d" aria-label="3D film set: a retro TV showing today's most-viewed titles, film reels, a clapperboard and popcorn"></canvas></div>
+  </header>
+
   <main>
-    <h1>Today</h1>
-    <p class="lede">Last run: <strong id="last-run">loading…</strong>. <span id="compare"></span></p>
+    <div class="filmstrip" aria-hidden="true"></div>
     <div id="offline" class="banner" hidden>You're offline. Showing the last data this device loaded.</div>
     <div id="error" class="banner" hidden></div>
 
     <div id="tiles" class="tiles"></div>
 
+    <section class="card">
+      <h2>Box-office skyline <span class="tag">3D · drag to rotate</span></h2>
+      <div class="legend">
+        <span><i style="background:var(--tv)"></i>TV shows</span>
+        <span><i style="background:var(--movie)"></i>Movies</span>
+        <span><i style="background:var(--up)"></i>Top: up since last run</span>
+        <span><i style="background:var(--down)"></i>Top: down</span>
+        <span>Height = daily views</span>
+      </div>
+      <div class="stage">
+        <canvas id="skyline" aria-label="3D bar chart of today's daily views by title"></canvas>
+        <div id="skyline-tip" class="tooltip" hidden></div>
+        <div class="stage-hint">Hover or tap a tower for details</div>
+      </div>
+    </section>
+
     <div class="grid grid-2">
       <section class="card">
-        <h2>Biggest moves since the previous run</h2>
-        <p class="muted small">Percent change in daily views, the 5 largest by size.</p>
+        <h2>Biggest moves</h2>
+        <p class="muted small">Percent change in daily views since the previous run, the 5 largest by size.</p>
         <ul id="moves" class="moves"></ul>
       </section>
       <section class="card">
@@ -49,7 +83,7 @@
     <section class="card">
       <h2>Latest values</h2>
       <div class="table-wrap"><table>
-        <thead><tr><th>Item</th><th>Type</th><th class="num">Daily views</th><th class="num">Change</th><th class="num">Change %</th><th class="num">7-day avg</th><th>Views for</th></tr></thead>
+        <thead><tr><th>#</th><th>Item</th><th>Type</th><th class="num">Daily views</th><th class="num">Change</th><th class="num">Change %</th><th class="num">7-day avg</th><th>Views for</th></tr></thead>
         <tbody id="latest"></tbody>
       </table></div>
     </section>
@@ -57,5 +91,21 @@
   <footer>Data: Wikimedia pageviews API (English Wikipedia, human readers, all devices). Updated daily by GitHub Actions.</footer>
   <script src="assets/app.js"></script>
   <script src="assets/today.js"></script>
+  <script type="module">
+    import { hero, barGrid } from "./assets/scene.js";
+    hero(document.getElementById("hero-3d"), screenItems());
+    const { rows, status } = await loadData();
+    const m = computeMoves(rows, status.run_date);
+    const pct = new Map(m.changes.map(c => [c.item_id, c.pct]));
+    const row = cat => [...m.today.values()].filter(r => r.category === cat)
+      .sort((a, b) => (b.views ?? 0) - (a.views ?? 0))
+      .map(r => ({
+        label: r.item, value: r.views, category: r.category, change: pct.get(r.item_id) ?? null,
+        detail: tipHTML(r.item, [`${fmtInt(r.views)} views on ${r.data_date}`,
+          `<span class="${cls(pct.get(r.item_id))}">${fmtPct(pct.get(r.item_id) ?? null)}</span> since last run`]),
+      }));
+    barGrid(document.getElementById("skyline"), document.getElementById("skyline-tip"),
+      [{ label: "TV SHOWS", bars: row("TV") }, { label: "MOVIES", bars: row("Movie") }]);
+  </script>
 </body>
 </html>

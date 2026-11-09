@@ -27,7 +27,7 @@ function render() {
     return (x - y) * d || a.item.localeCompare(b.item);
   });
 
-  document.getElementById("count").textContent = `${list.length} of ${items.length} items`;
+  document.getElementById("count").textContent = `Showing ${list.length} of ${items.length}.`;
   document.getElementById("rows").innerHTML = list.map(r => `
     <tr>
       <td><button class="star ${stars.has(r.item_id) ? "on" : ""}" data-id="${esc(r.item_id)}" aria-pressed="${stars.has(r.item_id)}" aria-label="Star ${esc(r.item)}" title="Add to shortlist">${stars.has(r.item_id) ? "★" : "☆"}</button></td>
@@ -50,8 +50,9 @@ function render() {
 
   const short = items.filter(r => stars.has(r.item_id));
   document.getElementById("shortlist").innerHTML = short.length
-    ? short.map(r => `<li><span>${esc(r.item)}</span><span>${fmtInt(r.views)} views</span></li>`).join("")
-    : `<li class="muted">Star an item (☆) to add it to your shortlist. It is saved in this browser.</li>`;
+    ? short.map(r => `<li><span class="pill ${esc(r.category)}">${esc(r.category)}</span><strong>${esc(r.item)}</strong>
+        <span class="muted small">${fmtInt(r.views)} views · <span class="${cls(r.change_pct)}">${fmtPct(r.change_pct)}</span></span></li>`).join("")
+    : `<li class="empty muted">Star a title (☆) to add it to your shortlist.</li>`;
 }
 
 (async () => {
@@ -60,7 +61,7 @@ function render() {
   const m = computeMoves(data.rows, data.status.run_date);
   const pct = new Map(m.changes.map(c => [c.item_id, c.pct]));
   items = [...m.today.values()].map(r => ({ ...r, change_pct: pct.has(r.item_id) ? pct.get(r.item_id) : null }));
-  document.getElementById("as-of").textContent = `Latest run: ${data.status.run_date}`;
+  document.getElementById("as-of").textContent = `Latest run · ${data.status.run_date}`;
 
   const sortSel = document.getElementById("sort");
   sortSel.innerHTML = SORT_COLS.flatMap(c => [

@@ -4,15 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Trends · TV &amp; Movie Tracker</title>
-  <meta name="theme-color" content="#121110">
+  <meta name="theme-color" content="#08070c">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="assets/style.css">
+  <script type="importmap">
+    { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
 </head>
 <body>
   <nav class="nav"><div class="nav-inner">
-    <a class="brand" href="index.html"><img src="icons/icon.svg" alt="">TV &amp; Movie Tracker</a>
+    <a class="brand" href="index.html"><img src="icons/icon.svg" alt=""><span>TV <b>&amp;</b> Movie Tracker</span></a>
     <div class="nav-links">
       <a href="index.html">Today</a>
       <a href="browse.html">Browse</a>
@@ -20,9 +29,17 @@
     </div>
   </div></nav>
 
+  <header class="hero compact">
+    <div class="reveal">
+      <span class="eyebrow"><span class="dot"></span>The full history</span>
+      <h1>Trends &amp;<br>Findings</h1>
+      <p class="lede">Every number below is computed in your browser from <code>data/history.csv</code>, so the report grows with each daily run. <span id="span">Loading…</span></p>
+    </div>
+    <div class="hero-stage reveal"><canvas id="hero-3d" aria-label="3D film set with a retro TV showing today's most-viewed titles"></canvas></div>
+  </header>
+
   <main>
-    <h1>Trends</h1>
-    <p class="lede">A report on the history the pipeline has built. Every number below is computed in your browser from <code>data/history.csv</code>: <span id="span">loading…</span></p>
+    <div class="filmstrip" aria-hidden="true"></div>
     <div id="offline" class="banner" hidden>You're offline. Showing the last data this device loaded.</div>
     <div id="error" class="banner" hidden></div>
 
@@ -40,23 +57,44 @@
       <div class="chart-box"><canvas id="chart-over-time" aria-label="Chosen value over time for the chosen items"></canvas></div>
     </section>
 
+    <section class="card">
+      <h2>View landscape <span class="tag">3D · drag to rotate</span></h2>
+      <p class="muted small">The 10 most-viewed titles on the latest run (left to right), one row per run date (back = oldest). Height is <code>views</code> from each row of the history file.</p>
+      <div class="legend">
+        <span><i style="background:var(--tv)"></i>TV shows</span>
+        <span><i style="background:var(--movie)"></i>Movies</span>
+        <span><i style="background:var(--up)"></i>Top: up vs the run before</span>
+        <span><i style="background:var(--down)"></i>Top: down</span>
+      </div>
+      <div class="stage">
+        <canvas id="landscape" aria-label="3D bars of daily views per title per run date"></canvas>
+        <div id="landscape-tip" class="tooltip" hidden></div>
+        <div class="stage-hint">Hover or tap a bar for details</div>
+      </div>
+    </section>
+
     <section class="card finding">
+      <span class="num-tag">Finding 01</span>
       <h2 id="f1-h"></h2><p id="f1-p"></p><p id="f1-how" class="how"></p>
       <div class="chart-box tall"><canvas id="f1-chart" aria-label="Change in 7-day average since first run, by item"></canvas></div>
     </section>
     <section class="card finding">
+      <span class="num-tag">Finding 02</span>
       <h2 id="f2-h"></h2><p id="f2-p"></p><p id="f2-how" class="how"></p>
       <div class="chart-box"><canvas id="f2-chart" aria-label="Average absolute daily move per run date"></canvas></div>
     </section>
     <section class="card finding">
+      <span class="num-tag">Finding 03</span>
       <h2 id="f3-h"></h2><p id="f3-p"></p><p id="f3-how" class="how"></p>
       <div class="chart-box tall"><canvas id="f3-chart" aria-label="7-day average views by item"></canvas></div>
     </section>
     <section class="card finding">
+      <span class="num-tag">Finding 04</span>
       <h2 id="f4-h"></h2><p id="f4-p"></p><p id="f4-how" class="how"></p>
       <div class="chart-box"><canvas id="f4-chart" aria-label="Total views of TV shows and movies per run date"></canvas></div>
     </section>
     <section class="card finding">
+      <span class="num-tag">Finding 05</span>
       <h2 id="f5-h"></h2><p id="f5-p"></p><p id="f5-how" class="how"></p>
       <div class="chart-box tall"><canvas id="f5-chart" aria-label="Weekly swing by item"></canvas></div>
     </section>
@@ -65,5 +103,28 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <script src="assets/app.js"></script>
   <script src="assets/trends.js"></script>
+  <script type="module">
+    import { hero, barGrid } from "./assets/scene.js";
+    hero(document.getElementById("hero-3d"), screenItems());
+    const { rows, dates } = await loadData();
+    const recent = dates.slice(-10);
+    const last = dates[dates.length - 1];
+    const top = rows.filter(r => r.date === last).sort((a, b) => (b.views ?? 0) - (a.views ?? 0)).slice(0, 10);
+    const at = new Map(rows.map(r => [`${r.date}|${r.item_id}`, r]));
+    const short = d => new Date(d + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }).toUpperCase();
+    const gridRows = recent.map((d, i) => ({
+      label: short(d),
+      bars: top.map(t => {
+        const r = at.get(`${d}|${t.item_id}`), p = i > 0 ? at.get(`${recent[i - 1]}|${t.item_id}`) : null;
+        if (!r) return { value: null };
+        const change = p && p.views > 0 && r.views != null ? (r.views - p.views) / p.views * 100 : null;
+        return {
+          label: r.item, value: r.views, category: r.category, change,
+          detail: tipHTML(r.item, [`Run ${d}: ${fmtInt(r.views)} views`, `<span class="${cls(change)}">${fmtPct(change)}</span> vs the run before`]),
+        };
+      }),
+    }));
+    barGrid(document.getElementById("landscape"), document.getElementById("landscape-tip"), gridRows, { rowGap: 1.1, maxHeight: 3.6 });
+  </script>
 </body>
 </html>
