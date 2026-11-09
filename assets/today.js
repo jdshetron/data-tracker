@@ -42,7 +42,18 @@
 
   const pctById = new Map(m.changes.map(c => [c.item_id, c]));
   const latest = [...m.today.values()].sort((a, b) => (b.views ?? 0) - (a.views ?? 0));
-  document.getElementById("latest").innerHTML = latest.map((r, i) => {
+  const SHORT = 25;
+  let showAll = false;
+  const btn = document.getElementById("show-all");
+  const renderLatest = () => {
+    const shown = showAll ? latest : latest.slice(0, SHORT);
+    document.getElementById("latest-count").textContent = `${shown.length} of ${latest.length} titles`;
+    btn.hidden = latest.length <= SHORT;
+    btn.textContent = showAll ? `Show top ${SHORT} only` : `Show all ${latest.length} titles`;
+    document.getElementById("latest").innerHTML = rowsHTML(shown);
+  };
+  btn.addEventListener("click", () => { showAll = !showAll; renderLatest(); });
+  const rowsHTML = list => list.map((r, i) => {
     const c = pctById.get(r.item_id);
     const diff = c ? c.new - c.old : null;
     return `<tr><td class="rank">${String(i + 1).padStart(2, "0")}</td><td><strong>${esc(r.item)}</strong></td><td><span class="pill ${esc(r.category)}">${esc(r.category)}</span></td>
@@ -52,4 +63,5 @@
       <td class="num">${fmt1(r.views_7d_avg)}</td>
       <td class="muted small">${esc(r.data_date)}</td></tr>`;
   }).join("");
+  renderLatest();
 })();

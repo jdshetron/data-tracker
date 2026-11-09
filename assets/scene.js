@@ -149,7 +149,7 @@ function clapperboard() {
     ctx.fillText(`DATE  ${today}`, 34, 260);
     ctx.font = '58px "Bebas Neue", sans-serif';
     ctx.fillStyle = "#ffc94d";
-    ctx.fillText("28", 120, 196); ctx.fillText("DAILY", w / 2 + 110, 196);
+    ctx.fillText("001", 110, 196); ctx.fillText("DAILY", w / 2 + 110, 196);
   }).tex;
 
   const body = new THREE.Mesh(new RoundedBoxGeometry(1.6, 1.05, 0.08, 2, 0.03), plastic(0x23222a, 0.7));
@@ -362,7 +362,7 @@ export async function hero(canvas, items) {
   const rig = new THREE.Group();
   scene.add(rig);
   const screen = screenTexture();
-  screen.draw({ kicker: "NOW TRACKING", title: "TV & MOVIES", value: "28 titles · daily", change: "" });
+  screen.draw({ kicker: "NOW TRACKING", title: "TV & MOVIES", value: "daily page views", change: "" });
 
   const tv = retroTV(screen);
   tv.position.set(0, -0.15, 0); tv.rotation.y = -0.22;

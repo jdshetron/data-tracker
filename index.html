@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Today · TV &amp; Movie Tracker</title>
-  <meta name="description" content="Daily Wikipedia page views for 28 TV shows and movies.">
+  <meta name="description" content="Daily Wikipedia page views for 274 TV shows and movies.">
   <meta name="theme-color" content="#08070c">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
@@ -54,7 +54,7 @@
         <span><i style="background:var(--movie)"></i>Movies</span>
         <span><i style="background:var(--up)"></i>Top: up since last run</span>
         <span><i style="background:var(--down)"></i>Top: down</span>
-        <span>Height = daily views</span>
+        <span>Height = daily views · rows of 25 ranked by views, TV in front, films behind</span>
       </div>
       <div class="stage">
         <canvas id="skyline" aria-label="3D bar chart of today's daily views by title"></canvas>
@@ -81,11 +81,12 @@
     </div>
 
     <section class="card">
-      <h2>Latest values</h2>
+      <h2>Latest values <span class="tag" id="latest-count"></span></h2>
       <div class="table-wrap"><table>
         <thead><tr><th>#</th><th>Item</th><th>Type</th><th class="num">Daily views</th><th class="num">Change</th><th class="num">Change %</th><th class="num">7-day avg</th><th>Views for</th></tr></thead>
         <tbody id="latest"></tbody>
       </table></div>
+      <p><button id="show-all" type="button" hidden></button></p>
     </section>
   </main>
   <footer>Data: Wikimedia pageviews API (English Wikipedia, human readers, all devices). Updated daily by GitHub Actions.</footer>
@@ -97,15 +98,22 @@
     const { rows, status } = await loadData();
     const m = computeMoves(rows, status.run_date);
     const pct = new Map(m.changes.map(c => [c.item_id, c.pct]));
-    const row = cat => [...m.today.values()].filter(r => r.category === cat)
-      .sort((a, b) => (b.views ?? 0) - (a.views ?? 0))
-      .map(r => ({
-        label: r.item, value: r.views, category: r.category, change: pct.get(r.item_id) ?? null,
-        detail: tipHTML(r.item, [`${fmtInt(r.views)} views on ${r.data_date}`,
-          `<span class="${cls(pct.get(r.item_id))}">${fmtPct(pct.get(r.item_id) ?? null)}</span> since last run`]),
-      }));
-    barGrid(document.getElementById("skyline"), document.getElementById("skyline-tip"),
-      [{ label: "TV SHOWS", bars: row("TV") }, { label: "MOVIES", bars: row("Movie") }]);
+    const PER_ROW = 25;
+    const city = [];
+    for (const [cat, word] of [["TV", "TV"], ["Movie", "FILM"]]) {
+      const bars = [...m.today.values()].filter(r => r.category === cat)
+        .sort((a, b) => (b.views ?? 0) - (a.views ?? 0))
+        .map((r, i) => ({
+          label: r.item, value: r.views, category: r.category, change: pct.get(r.item_id) ?? null,
+          detail: tipHTML(r.item, [`#${i + 1} ${cat === "TV" ? "TV show" : "movie"} · ${fmtInt(r.views)} views on ${r.data_date}`,
+            `<span class="${cls(pct.get(r.item_id))}">${fmtPct(pct.get(r.item_id) ?? null)}</span> since last run`]),
+        }));
+      for (let i = 0; i < bars.length; i += PER_ROW)
+        city.push({ label: `${word} ${i + 1}–${Math.min(i + PER_ROW, bars.length)}`, bars: bars.slice(i, i + PER_ROW) });
+    }
+    // front rows = most viewed: barGrid draws row 0 at the back, so reverse
+    barGrid(document.getElementById("skyline"), document.getElementById("skyline-tip"), city.reverse(),
+      { spacing: 0.85, rowGap: 1.05, maxHeight: 4.2 });
   </script>
 </body>
 </html>

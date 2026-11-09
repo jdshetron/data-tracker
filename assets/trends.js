@@ -25,9 +25,18 @@ function overTime(rows, dates) {
   const metricSel = document.getElementById("metric");
   metricSel.innerHTML = NUMERIC.map(c => `<option value="${c}">${LABELS[c]}</option>`).join("");
   const picker = document.getElementById("picker");
+  const pickerQ = document.getElementById("picker-q");
+  const SHOW = 40;
+  // Chosen titles are always listed; others are listed when they match the search (up to SHOW).
   const renderPicker = () => {
-    picker.innerHTML = items.map(r => `<label><input type="checkbox" value="${esc(r.item_id)}" ${chosen.has(r.item_id) ? "checked" : ""}> ${esc(r.item)}</label>`).join("");
+    const q = pickerQ.value.trim().toLowerCase();
+    const others = items.filter(r => !chosen.has(r.item_id) && (!q || r.item.toLowerCase().includes(q)));
+    const list = [...items.filter(r => chosen.has(r.item_id)), ...others.slice(0, SHOW)];
+    picker.innerHTML = list.map(r => `<label><input type="checkbox" value="${esc(r.item_id)}" ${chosen.has(r.item_id) ? "checked" : ""}> ${esc(r.item)}</label>`).join("");
+    document.getElementById("picker-note").textContent =
+      `${chosen.size} chosen of ${items.length} titles.` + (others.length > SHOW ? ` Showing ${SHOW} of ${others.length} others; type in "Find a title" to narrow.` : "");
   };
+  pickerQ.addEventListener("input", renderPicker);
   const render = () => {
     const metric = metricSel.value;
     const lookup = new Map(rows.map(r => [`${r.date}|${r.item_id}`, r[metric]]));
@@ -48,11 +57,12 @@ function overTime(rows, dates) {
   metricSel.addEventListener("change", render);
   picker.addEventListener("change", e => { e.target.checked ? chosen.add(e.target.value) : chosen.delete(e.target.value); render(); });
   const setAll = ids => { chosen.clear(); ids.forEach(id => chosen.add(id)); renderPicker(); render(); };
-  document.getElementById("pick-all").onclick = () => setAll(items.map(r => r.item_id));
+  const topOf = cat => [...latest.entries()].filter(([id]) => items.find(r => r.item_id === id)?.category === cat)
+    .sort((a, b) => b[1] - a[1]).slice(0, 10).map(e => e[0]);
   document.getElementById("pick-none").onclick = () => setAll([]);
   document.getElementById("pick-top").onclick = () => setAll(topIds);
-  document.getElementById("pick-tv").onclick = () => setAll(items.filter(r => r.category === "TV").map(r => r.item_id));
-  document.getElementById("pick-movie").onclick = () => setAll(items.filter(r => r.category === "Movie").map(r => r.item_id));
+  document.getElementById("pick-tv").onclick = () => setAll(topOf("TV"));
+  document.getElementById("pick-movie").onclick = () => setAll(topOf("Movie"));
   renderPicker();
   render();
 }
@@ -82,10 +92,11 @@ function riseFall(rows, dates) {
   set("f1-h", `${esc(up.item)} rose the most since the first run (${fmtPct(up.pct)}); ${esc(down.item)} fell the most (${fmtPct(down.pct)})`);
   set("f1-p", `${esc(up.item)}'s 7-day average went from ${fmt1(up.from)} views a day on ${up.fromDate} to ${fmt1(up.to)} on ${up.toDate}. ${esc(down.item)} went from ${fmt1(down.from)} to ${fmt1(down.to)}. ` +
     `${ch.filter(c => c.pct > 0).length} of ${ch.length} items are up and ${ch.filter(c => c.pct < 0).length} are down; the median change is ${fmtPct(median(ch.map(c => c.pct)))}.`);
-  set("f1-how", how);
+  set("f1-how", how + (ch.length > 20 ? ` The chart shows the 10 biggest risers and the 10 biggest fallers of all ${ch.length} titles.` : ""));
+  const shown = ch.length > 20 ? [...ch.slice(0, 10), ...ch.slice(-10)] : ch;
   draw("f1-chart", {
     type: "bar",
-    data: { labels: ch.map(c => c.item), datasets: [{ data: ch.map(c => +c.pct.toFixed(2)), backgroundColor: ch.map(c => c.pct >= 0 ? cssVar("--up") : cssVar("--down")) }] },
+    data: { labels: shown.map(c => c.item), datasets: [{ data: shown.map(c => +c.pct.toFixed(2)), backgroundColor: shown.map(c => c.pct >= 0 ? cssVar("--up") : cssVar("--down")) }] },
     options: barOpts(true, "%"),
   });
 }
@@ -121,10 +132,12 @@ function spread(rows, dates) {
   set("f3-h", `${esc(hi.item)} gets ${(hi.views_7d_avg / lo.views_7d_avg).toFixed(1)}× the daily views of ${esc(lo.item)}`);
   set("f3-p", `On the latest run (${last}), ${esc(hi.item)} averages ${fmt1(hi.views_7d_avg)} views a day over the last 7 days, while ${esc(lo.item)} averages ${fmt1(lo.views_7d_avg)}. ` +
     `The top 3 items take ${(top3 / total * 100).toFixed(1)}% of the ${fmtInt(total)} daily views across all ${r.length} items; the median item gets ${fmt1(median(r.map(x => x.views_7d_avg)))}.`);
-  set("f3-how", `How it's computed: rows with <code>date</code> = ${last}, sorted by <code>views_7d_avg</code>. The ratio is the highest divided by the lowest; the share is the sum of the top 3 divided by the sum of all items.`);
+  set("f3-how", `How it's computed: rows with <code>date</code> = ${last}, sorted by <code>views_7d_avg</code>. The ratio is the highest divided by the lowest; the share is the sum of the top 3 divided by the sum of all items.` +
+    (r.length > 25 ? ` The chart shows the top 25 of ${r.length} titles.` : ""));
+  const top25 = r.slice(0, 25);
   draw("f3-chart", {
     type: "bar",
-    data: { labels: r.map(x => x.item), datasets: [{ data: r.map(x => x.views_7d_avg), backgroundColor: r.map(x => colorFor(x.category)) }] },
+    data: { labels: top25.map(x => x.item), datasets: [{ data: top25.map(x => x.views_7d_avg), backgroundColor: top25.map(x => colorFor(x.category)) }] },
     options: barOpts(true),
   });
 }
@@ -164,10 +177,12 @@ function volatility(rows, dates) {
   set("f5-h", `${esc(top.item)} has the most uneven week: its daily views swing ${top.swing.toFixed(0)}% of its average`);
   set("f5-p", `In the 7 days up to the latest run (${last}), ${esc(top.item)} ranged from ${fmtInt(top.lo)} to ${fmtInt(top.hi)} views a day around an average of ${fmt1(top.avg)}. ` +
     `The steadiest title is ${esc(calm.item)}, with a swing of ${calm.swing.toFixed(0)}% (${fmtInt(calm.lo)} to ${fmtInt(calm.hi)}). The median swing is ${median(r.map(x => x.swing)).toFixed(0)}%.`);
-  set("f5-how", `How it's computed: rows with <code>date</code> = ${last}; swing = (<code>views_7d_high</code> − <code>views_7d_low</code>) ÷ <code>views_7d_avg</code> × 100.`);
+  set("f5-how", `How it's computed: rows with <code>date</code> = ${last}; swing = (<code>views_7d_high</code> − <code>views_7d_low</code>) ÷ <code>views_7d_avg</code> × 100.` +
+    (r.length > 25 ? ` The chart shows the 25 biggest swings of ${r.length} titles.` : ""));
+  const top25 = r.slice(0, 25);
   draw("f5-chart", {
     type: "bar",
-    data: { labels: r.map(x => x.item), datasets: [{ data: r.map(x => +x.swing.toFixed(1)), backgroundColor: r.map(x => colorFor(x.cat)) }] },
+    data: { labels: top25.map(x => x.item), datasets: [{ data: top25.map(x => +x.swing.toFixed(1)), backgroundColor: top25.map(x => colorFor(x.cat)) }] },
     options: barOpts(true, "%"),
   });
 }

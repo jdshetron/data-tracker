@@ -47,19 +47,20 @@
       <h2>Each value over the days</h2>
       <div class="controls">
         <label>Value<select id="metric"></select></label>
+        <label>Find a title<input id="picker-q" type="search" placeholder="e.g. Severance"></label>
         <button id="pick-top" type="button">Top 6</button>
-        <button id="pick-tv" type="button">TV shows</button>
-        <button id="pick-movie" type="button">Movies</button>
-        <button id="pick-all" type="button">All</button>
-        <button id="pick-none" type="button">None</button>
+        <button id="pick-tv" type="button">Top 10 TV</button>
+        <button id="pick-movie" type="button">Top 10 movies</button>
+        <button id="pick-none" type="button">Clear</button>
       </div>
       <div id="picker" class="item-picker"></div>
+      <p id="picker-note" class="muted small"></p>
       <div class="chart-box"><canvas id="chart-over-time" aria-label="Chosen value over time for the chosen items"></canvas></div>
     </section>
 
     <section class="card">
       <h2>View landscape <span class="tag">3D · drag to rotate</span></h2>
-      <p class="muted small">The 10 most-viewed titles on the latest run (left to right), one row per run date (back = oldest). Height is <code>views</code> from each row of the history file.</p>
+      <p class="muted small">The 12 most-viewed titles on the latest run (left to right), one row per run date (back = oldest). Height is <code>views</code> from each row of the history file.</p>
       <div class="legend">
         <span><i style="background:var(--tv)"></i>TV shows</span>
         <span><i style="background:var(--movie)"></i>Movies</span>
@@ -109,7 +110,7 @@
     const { rows, dates } = await loadData();
     const recent = dates.slice(-10);
     const last = dates[dates.length - 1];
-    const top = rows.filter(r => r.date === last).sort((a, b) => (b.views ?? 0) - (a.views ?? 0)).slice(0, 10);
+    const top = rows.filter(r => r.date === last).sort((a, b) => (b.views ?? 0) - (a.views ?? 0)).slice(0, 12);
     const at = new Map(rows.map(r => [`${r.date}|${r.item_id}`, r]));
     const short = d => new Date(d + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }).toUpperCase();
     const gridRows = recent.map((d, i) => ({
