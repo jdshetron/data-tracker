@@ -115,8 +115,15 @@ history, and updates the same issue, so each day counts once.
 
 ## Website
 
-Three pages share one navigation bar, one stylesheet and one set of fonts and colours. They
-load `data/history.csv` and `data/status.json` in the browser and compute everything there.
+Three pages share one navigation bar, one stylesheet and one set of fonts and colours: a dark
+cinema theme with marquee gold for movies and TV-screen cyan for shows (Bebas Neue and Inter).
+They load `data/history.csv` and `data/status.json` in the browser and compute everything there.
+
+Each page opens with a 3D film set built with [Three.js](https://threejs.org/) from code (no
+model files): a retro TV whose screen cycles through today's most-viewed titles, spinning film
+reels, a clapperboard, a popcorn bucket and a scrolling film strip. The Today page has a 3D
+"box-office skyline" of today's views, and the Trends page has a 3D "view landscape" of the top
+titles across run dates; both can be rotated by dragging, and hovering a bar shows its numbers.
 
 - **Today** (`index.html`): time of the last run, status of every source, the status counts,
   latest values with change since the previous run, and the biggest moves.
@@ -155,6 +162,7 @@ when offline.
 | `assets/style.css` | Shared fonts, colours and layout |
 | `assets/app.js` | Shared code: loading and parsing the data files, the move rule, formatting, service worker registration |
 | `assets/today.js`, `assets/browse.js`, `assets/trends.js` | Page-specific code |
+| `assets/scene.js` | 3D models and charts (Three.js): the film-set hero (retro TV showing today's top titles, film reels, clapperboard, popcorn, film strip) and the rotatable 3D bar charts |
 | `manifest.webmanifest` | Web app manifest (makes the site installable) |
 | `sw.js` | Service worker (offline support) |
 | `icons/` | App icons (SVG and PNG) |
