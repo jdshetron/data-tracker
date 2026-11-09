@@ -410,7 +410,8 @@ export async function hero(canvas, items) {
  * Each row is a line of bars on the floor; height is proportional to value.
  * Hovering (or tapping) a bar shows its detail in `tooltip`.
  */
-export async function barGrid(canvas, tooltip, rows, { maxHeight = 4, spacing = 0.95, rowGap = 1.7, rowLabelColor = "#ffc94d" } = {}) {
+export async function barGrid(canvas, tooltip, rows, { maxHeight = 4, spacing = 0.95, rowGap = 1.7, rowLabelColor = "#ffc94d", sqrt = false } = {}) {
+  const scaleOf = v => (sqrt ? Math.sqrt(v) : v);
   if (!webglAvailable()) { canvas.closest(".stage")?.classList.add("no-3d"); return; }
   await document.fonts.ready;
   const { renderer, scene, camera } = setup(canvas, 40);
@@ -421,7 +422,7 @@ export async function barGrid(canvas, tooltip, rows, { maxHeight = 4, spacing = 
   const warm = new THREE.PointLight(C.gold, 18, 0, 2); warm.position.set(0, 6, 4); scene.add(warm);
 
   const all = rows.flatMap(r => r.bars);
-  const max = Math.max(1, ...all.map(b => b.value || 0));
+  const max = Math.max(1, ...all.map(b => scaleOf(b.value || 0)));
   const cols = Math.max(...rows.map(r => r.bars.length));
   const W = (cols - 1) * spacing, D = (rows.length - 1) * rowGap;
 
@@ -448,13 +449,13 @@ export async function barGrid(canvas, tooltip, rows, { maxHeight = 4, spacing = 
       const color = CAT_COLOR[b.category] ?? C.gold;
       const mat = new THREE.MeshStandardMaterial({ color, metalness: 0.15, roughness: 0.38, emissive: color, emissiveIntensity: 0.12, envMapIntensity: 0.5 });
       const mesh = new THREE.Mesh(geo, mat);
-      const h = 0.12 + maxHeight * b.value / max;
+      const h = 0.12 + maxHeight * scaleOf(b.value) / max;
       mesh.position.set(-W / 2 + i * spacing, 0, z);
       mesh.scale.y = 0.001;
       const capColor = b.change == null ? new THREE.Color(color).lerp(new THREE.Color(0xffffff), 0.55) : b.change > 0 ? C.up : b.change < 0 ? C.down : C.flat;
       const cap = new THREE.Mesh(capGeo, new THREE.MeshBasicMaterial({ color: capColor, toneMapped: false }));
       cap.position.copy(mesh.position);
-      mesh.userData = { bar: b, h, cap, delay: (r * cols + i) * 0.025 };
+      mesh.userData = { bar: b, h, cap, delay: (r * cols + i) * Math.min(0.025, 1.5 / (rows.length * cols)) };
       scene.add(mesh, cap);
       bars.push(mesh);
     });
@@ -473,7 +474,7 @@ export async function barGrid(canvas, tooltip, rows, { maxHeight = 4, spacing = 
 
   function frame() {
     const fov = THREE.MathUtils.degToRad(camera.fov);
-    const needW = (W + 4.5) / (2 * Math.tan(fov / 2) * camera.aspect);
+    const needW = (W + 7) / (2 * Math.tan(fov / 2) * camera.aspect);
     const needH = (maxHeight + D * 0.5 + 2) / (2 * Math.tan(fov / 2));
     const dist = Math.max(needW, needH) * 1.1;
     const dir = new THREE.Vector3(0.22, 0.78, 1).normalize();

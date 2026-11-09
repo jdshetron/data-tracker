@@ -54,7 +54,7 @@
         <span><i style="background:var(--movie)"></i>Movies</span>
         <span><i style="background:var(--up)"></i>Top: up since last run</span>
         <span><i style="background:var(--down)"></i>Top: down</span>
-        <span>Height = daily views · rows of 25 ranked by views, TV in front, films behind</span>
+        <span>Height = √ daily views (so smaller titles still show) · rows of 25 ranked by views, TV in front, films behind</span>
       </div>
       <div class="stage">
         <canvas id="skyline" aria-label="3D bar chart of today's daily views by title"></canvas>
@@ -113,7 +113,7 @@
     }
     // front rows = most viewed: barGrid draws row 0 at the back, so reverse
     barGrid(document.getElementById("skyline"), document.getElementById("skyline-tip"), city.reverse(),
-      { spacing: 0.85, rowGap: 1.05, maxHeight: 4.2 });
+      { spacing: 0.85, rowGap: 1.05, maxHeight: 4.6, sqrt: true });
   </script>
 </body>
 </html>
