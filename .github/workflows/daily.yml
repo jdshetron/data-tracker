@@ -1,0 +1,50 @@
+name: Daily run
+
+on:
+  schedule:
+    - cron: "23 13 * * *"   # every day at 13:23 UTC
+  workflow_dispatch:         # lets you start a run by hand from the Actions tab
+
+permissions:
+  contents: write   # commit the data files
+  issues: write     # open/close the daily issue
+  pages: write      # deploy the site
+  id-token: write
+
+concurrency:
+  group: daily-run
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Fetch sources, build history, write status
+        run: python -m tracker run
+
+      - name: Open or update today's issue, close the previous one
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -m tracker issue
+
+      - name: Commit raw files, history and status
+        if: ${{ !cancelled() }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          git commit -m "Daily data $(date -u +%F)" || echo "Nothing to commit"
+          for i in 1 2 3; do git pull --rebase && git push && break; sleep 10; done
+
+  deploy:
+    needs: run
+    uses: ./.github/workflows/pages.yml
