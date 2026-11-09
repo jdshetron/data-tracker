@@ -9,7 +9,7 @@ import csv
 import io
 from pathlib import Path
 
-from .config import article_lookup
+from .config import article_lookup, item_id as slugify
 from .fetch import read_raw
 
 COLUMNS = [
@@ -29,11 +29,6 @@ COLUMNS = [
 NUMERIC = ["views", "views_prev_day", "views_7d_avg", "views_7d_high", "views_7d_low"]
 
 
-def slugify(text):
-    out = "".join(c.lower() if c.isalnum() else "-" for c in text)
-    return "-".join(part for part in out.split("-") if part)
-
-
 def ymd(timestamp):
     """'2026110800' -> '2026-11-08'."""
     return f"{timestamp[0:4]}-{timestamp[4:6]}-{timestamp[6:8]}"
@@ -45,7 +40,7 @@ def parse_source(source, payload, run_date):
     rows = []
     for article, response in sorted(payload.get("responses", {}).items()):
         if not response or not response.get("items"):
-            continue  # not reported that day: no row
+            continue  # not reported that day (missing or failed): no row
         series = sorted((ymd(p["timestamp"]), int(p["views"])) for p in response["items"])
         data_date, views = series[-1]
         last7 = [v for _, v in series[-7:]]
