@@ -47,19 +47,23 @@ def fetch_source(name, run_date, session=None, sleep=time.sleep):
     """Download every article of one source and return the payload as a dict.
 
     The payload keeps each API response exactly as it came back, keyed by article.
-    Raises if no article could be downloaded.
+    An article that fails (after retries) is stored as {"error": ...} and the rest
+    carry on; the source only fails if no article could be downloaded.
     """
     session = session or requests.Session()
     session.headers["User-Agent"] = USER_AGENT
     start, end = window(run_date)
     responses = {}
-    for _item_id, _label, article in SOURCES[name]["items"]:
+    for _label, article in SOURCES[name]["items"]:
         url = API_URL.format(
             access="all-access", article=urllib.parse.quote(article, safe=""), start=start, end=end
         )
-        responses[article] = get_json(session, url, sleep=sleep)
+        try:
+            responses[article] = get_json(session, url, sleep=sleep)
+        except Exception as exc:
+            responses[article] = {"error": f"{type(exc).__name__}: {exc}"[:200]}
         sleep(PAUSE_SECONDS)
-    if not any(responses.values()):
+    if not any(r and r.get("items") for r in responses.values()):
         raise RuntimeError(f"source {name} returned no data")
     return {
         "source": name,

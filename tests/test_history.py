@@ -18,7 +18,7 @@ def fake_fetcher(views, fail=()):
             raise ConnectionError("source down")
         day = (run_date - dt.timedelta(days=1)).isoformat()
         return {"source": name, "responses": {
-            a: api_response(a, {day: views}) for _i, _n, a in SOURCES[name]["items"]}}
+            a: api_response(a, {day: views}) for _n, a in SOURCES[name]["items"]}}
     return fetch
 
 
@@ -123,6 +123,22 @@ def test_rate_limit_is_retried():
     s = FakeSession([FakeResp(429, headers={"retry-after": "3"}), FakeResp(200, {"items": []})])
     assert get_json(s, "u", sleep=waits.append) == {"items": []}
     assert waits == [4]
+
+
+def test_one_failing_article_does_not_fail_the_source():
+    from tracker.fetch import fetch_source
+
+    class Session(FakeSession):
+        headers = {}
+
+        def get(self, url, timeout):
+            if "Friends" in url:
+                return FakeResp(500)
+            return FakeResp(200, {"items": [{"timestamp": "2026110800", "views": 5}]})
+
+    payload = fetch_source("tv", dt.date(2026, 11, 9), session=Session([]), sleep=lambda s: None)
+    assert payload["responses"]["Friends"]["error"].startswith("RuntimeError")
+    assert payload["responses"]["Breaking_Bad"]["items"][0]["views"] == 5
 
 
 def test_404_means_not_reported():
