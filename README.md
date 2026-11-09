@@ -1,10 +1,10 @@
-﻿# TV & Movie Tracker
+# TV & Movie Tracker
 
 [![Tests](https://github.com/jdshetron/data-tracker/actions/workflows/tests.yml/badge.svg)](https://github.com/jdshetron/data-tracker/actions/workflows/tests.yml)
 [![Daily run](https://github.com/jdshetron/data-tracker/actions/workflows/daily.yml/badge.svg)](https://github.com/jdshetron/data-tracker/actions/workflows/daily.yml)
 
 Every day, on its own, this tool downloads the latest **English Wikipedia page views** for
-14 TV shows and 14 movies, adds them to a history with one row per item per day, opens a
+125 TV shows and 149 movies (274 titles), adds them to a history with one row per item per day, opens a
 GitHub Issue listing what moved, and publishes the result to a website.
 
 **Live site:** https://jdshetron.github.io/data-tracker/
@@ -13,8 +13,8 @@ GitHub Issue listing what moved, and publishes the result to a website.
 
 | Source | What it is | Format | Items |
 |---|---|---|---|
-| `tv` | [Wikimedia Pageviews API](https://doc.wikimedia.org/generated-data-platform/aqs/analytics-api/reference/page-views.html), per-article daily views | JSON (saved as `data/raw/<date>/tv.json.gz`) | 14 TV shows |
-| `movies` | Same API, for a different list of articles | JSON (saved as `data/raw/<date>/movies.json.gz`) | 14 movies |
+| `tv` | [Wikimedia Pageviews API](https://doc.wikimedia.org/generated-data-platform/aqs/analytics-api/reference/page-views.html), per-article daily views | JSON (saved as `data/raw/<date>/tv.json.gz`) | 125 TV shows |
+| `movies` | Same API, for a different list of articles | JSON (saved as `data/raw/<date>/movies.json.gz`) | 149 movies |
 
 No login or API key is needed. Each run makes one request per article:
 
@@ -27,12 +27,20 @@ English Wikipedia, only human readers (`agent=user`, which leaves out bots and c
 devices combined (`all-access`), and only the 8 complete days before the run date. The raw
 file stores each article's API response unchanged, keyed by article title.
 
-Wikimedia limits anonymous clients to about 10 requests in a burst, so the fetcher pauses
+Wikimedia limits anonymous clients to about 10 requests a minute, so the fetcher pauses
 1 second between requests and waits for the time the server's `retry-after` header gives when
-it answers `429 Too Many Requests`. A run takes about 2â€“3 minutes.
+it answers `429 Too Many Requests`. With 274 titles a run takes about 25–30 minutes. A title
+that still fails after 8 tries is stored in the raw file as `{"error": ...}` and has no row that
+day; the rest of its source carries on. A source only fails if none of its titles could be
+downloaded.
 
-**Item key:** each item has a fixed `item_id` (for example `breaking-bad`) set in
-`tracker/config.py`, so the same show lines up day after day even if its display name changes.
+The article titles were checked against the Wikipedia API, with redirects resolved to each
+page's current title (the pageviews API does not follow redirects).
+
+**Item key:** each item's `item_id` is made from its display name in `tracker/config.py`
+(lower case, accents removed, anything that is not a letter or digit becomes `-`; for example
+`The Office (US)` → `the-office-us`, `Shōgun` → `shogun`), so the same show lines up day after
+day. A test checks that every key is unique.
 
 ## The history file: `data/history.csv`
 
@@ -73,7 +81,7 @@ A move is the **percent change in `views`** between an item's row on the run dat
 on the previous date in the history:
 
 ```
-move % = (views today âˆ’ views on the previous run) Ã· views on the previous run Ã— 100
+move % = (views today − views on the previous run) ÷ views on the previous run × 100
 ```
 
 Items are ranked by the size of the move (absolute percent, largest first; ties broken by
@@ -129,7 +137,7 @@ titles across run dates; both can be rotated by dragging, and hovering a bar sho
   latest values with change since the previous run, and the biggest moves.
 - **Browse** (`browse.html`): latest values with filters (type, direction since last run,
   minimum views, starred only), a title search, sorting by every numeric column in both
-  directions, and a â˜† shortlist saved in the browser's `localStorage`.
+  directions, and a ☆ shortlist saved in the browser's `localStorage`.
 - **Trends** (`trends.html`): a chart of each numeric value over the days with an item picker,
   and five findings (biggest riser and faller since the first run, the run with the biggest
   moves, how far apart the items are, TV vs movies, and which titles swing most within a week),
@@ -143,7 +151,7 @@ when offline.
 
 | File | What it does |
 |---|---|
-| `tracker/config.py` | The two sources, their items (`item_id`, name, Wikipedia article), and API settings |
+| `tracker/config.py` | The two sources, their 274 items (name, Wikipedia article), how `item_id` is made, and API settings |
 | `tracker/fetch.py` | Calls each source with rate-limit handling and writes the raw `.json.gz` files |
 | `tracker/build.py` | Converts raw files to the common columns and writes `data/history.csv` |
 | `tracker/moves.py` | The move rule: percent moves, top 5, appeared and disappeared items |
@@ -152,9 +160,9 @@ when offline.
 | `tracker/__main__.py` | Command line: `run`, `build`, `issue` |
 | `tracker/__init__.py` | Marks `tracker` as a package |
 | `tests/conftest.py` | Test setup and a helper that builds fake API responses |
-| `tests/test_convert.py` | Conversion of each source to the common columns |
+| `tests/test_convert.py` | Conversion of each source to the common columns, failed or missing titles, unique item keys |
 | `tests/test_moves.py` | The move rule |
-| `tests/test_history.py` | History logic: sorting, reproducible builds, second run on the same day, failed sources, status, rate-limit retries |
+| `tests/test_history.py` | History logic: sorting, reproducible builds, second run on the same day, failed sources, one failing title, status, rate-limit retries |
 | `.github/workflows/daily.yml` | Runs the pipeline every day at 13:23 UTC, opens the issue, commits the data, deploys the site |
 | `.github/workflows/tests.yml` | Runs the tests on every push |
 | `.github/workflows/pages.yml` | Publishes the site to GitHub Pages |
