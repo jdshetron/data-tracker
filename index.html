@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Today · TV &amp; Movie Tracker</title>
+  <meta name="description" content="Daily Wikipedia page views for 28 TV shows and movies.">
+  <meta name="theme-color" content="#121110">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <nav class="nav"><div class="nav-inner">
+    <a class="brand" href="index.html"><img src="icons/icon.svg" alt="">TV &amp; Movie Tracker</a>
+    <div class="nav-links">
+      <a href="index.html" aria-current="page">Today</a>
+      <a href="browse.html">Browse</a>
+      <a href="trends.html">Trends</a>
+    </div>
+  </div></nav>
+
+  <main>
+    <h1>Today</h1>
+    <p class="lede">Last run: <strong id="last-run">loading…</strong>. <span id="compare"></span></p>
+    <div id="offline" class="banner" hidden>You're offline. Showing the last data this device loaded.</div>
+    <div id="error" class="banner" hidden></div>
+
+    <div id="tiles" class="tiles"></div>
+
+    <div class="grid grid-2">
+      <section class="card">
+        <h2>Biggest moves since the previous run</h2>
+        <p class="muted small">Percent change in daily views, the 5 largest by size.</p>
+        <ul id="moves" class="moves"></ul>
+      </section>
+      <section class="card">
+        <h2>Sources</h2>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Source</th><th>Status</th><th class="num">Items</th><th>Error</th></tr></thead>
+          <tbody id="sources"></tbody>
+        </table></div>
+        <p class="small"><strong>Appeared:</strong> <span id="appeared"></span><br>
+          <strong>Disappeared:</strong> <span id="gone"></span></p>
+      </section>
+    </div>
+
+    <section class="card">
+      <h2>Latest values</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Item</th><th>Type</th><th class="num">Daily views</th><th class="num">Change</th><th class="num">Change %</th><th class="num">7-day avg</th><th>Views for</th></tr></thead>
+        <tbody id="latest"></tbody>
+      </table></div>
+    </section>
+  </main>
+  <footer>Data: Wikimedia pageviews API (English Wikipedia, human readers, all devices). Updated daily by GitHub Actions.</footer>
+  <script src="assets/app.js"></script>
+  <script src="assets/today.js"></script>
+</body>
+</html>

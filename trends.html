@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trends · TV &amp; Movie Tracker</title>
+  <meta name="theme-color" content="#121110">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <nav class="nav"><div class="nav-inner">
+    <a class="brand" href="index.html"><img src="icons/icon.svg" alt="">TV &amp; Movie Tracker</a>
+    <div class="nav-links">
+      <a href="index.html">Today</a>
+      <a href="browse.html">Browse</a>
+      <a href="trends.html" aria-current="page">Trends</a>
+    </div>
+  </div></nav>
+
+  <main>
+    <h1>Trends</h1>
+    <p class="lede">A report on the history the pipeline has built. Every number below is computed in your browser from <code>data/history.csv</code>: <span id="span">loading…</span></p>
+    <div id="offline" class="banner" hidden>You're offline. Showing the last data this device loaded.</div>
+    <div id="error" class="banner" hidden></div>
+
+    <section class="card">
+      <h2>Each value over the days</h2>
+      <div class="controls">
+        <label>Value<select id="metric"></select></label>
+        <button id="pick-top" type="button">Top 6</button>
+        <button id="pick-tv" type="button">TV shows</button>
+        <button id="pick-movie" type="button">Movies</button>
+        <button id="pick-all" type="button">All</button>
+        <button id="pick-none" type="button">None</button>
+      </div>
+      <div id="picker" class="item-picker"></div>
+      <div class="chart-box"><canvas id="chart-over-time" aria-label="Chosen value over time for the chosen items"></canvas></div>
+    </section>
+
+    <section class="card finding">
+      <h2 id="f1-h"></h2><p id="f1-p"></p><p id="f1-how" class="how"></p>
+      <div class="chart-box tall"><canvas id="f1-chart" aria-label="Change in 7-day average since first run, by item"></canvas></div>
+    </section>
+    <section class="card finding">
+      <h2 id="f2-h"></h2><p id="f2-p"></p><p id="f2-how" class="how"></p>
+      <div class="chart-box"><canvas id="f2-chart" aria-label="Average absolute daily move per run date"></canvas></div>
+    </section>
+    <section class="card finding">
+      <h2 id="f3-h"></h2><p id="f3-p"></p><p id="f3-how" class="how"></p>
+      <div class="chart-box tall"><canvas id="f3-chart" aria-label="7-day average views by item"></canvas></div>
+    </section>
+    <section class="card finding">
+      <h2 id="f4-h"></h2><p id="f4-p"></p><p id="f4-how" class="how"></p>
+      <div class="chart-box"><canvas id="f4-chart" aria-label="Total views of TV shows and movies per run date"></canvas></div>
+    </section>
+    <section class="card finding">
+      <h2 id="f5-h"></h2><p id="f5-p"></p><p id="f5-how" class="how"></p>
+      <div class="chart-box tall"><canvas id="f5-chart" aria-label="Weekly swing by item"></canvas></div>
+    </section>
+  </main>
+  <footer>Bar colours: <span style="color:var(--tv)">■ TV shows</span> · <span style="color:var(--movie)">■ Movies</span></footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="assets/app.js"></script>
+  <script src="assets/trends.js"></script>
+</body>
+</html>

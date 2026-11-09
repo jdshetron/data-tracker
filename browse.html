@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Browse · TV &amp; Movie Tracker</title>
+  <meta name="theme-color" content="#121110">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <nav class="nav"><div class="nav-inner">
+    <a class="brand" href="index.html"><img src="icons/icon.svg" alt="">TV &amp; Movie Tracker</a>
+    <div class="nav-links">
+      <a href="index.html">Today</a>
+      <a href="browse.html" aria-current="page">Browse</a>
+      <a href="trends.html">Trends</a>
+    </div>
+  </div></nav>
+
+  <main>
+    <h1>Browse</h1>
+    <p class="lede"><span id="as-of">loading…</span> · <span id="count"></span></p>
+    <div id="offline" class="banner" hidden>You're offline. Showing the last data this device loaded.</div>
+    <div id="error" class="banner" hidden></div>
+
+    <section class="card">
+      <div class="controls">
+        <label>Search titles<input id="q" type="search" placeholder="e.g. Dune"></label>
+        <label>Type
+          <select id="category"><option value="">All</option><option value="TV">TV shows</option><option value="Movie">Movies</option></select>
+        </label>
+        <label>Since last run
+          <select id="trend"><option value="">All</option><option value="up">Rising</option><option value="down">Falling</option><option value="flat">No change / new</option></select>
+        </label>
+        <label>Min daily views<input id="min-views" type="number" min="0" step="500" placeholder="0" style="width:120px"></label>
+        <label>Sort by<select id="sort"></select></label>
+        <label class="check"><input id="starred" type="checkbox"> Starred only</label>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr>
+          <th aria-label="Star"></th><th>Item</th><th>Type</th>
+          <th class="num sortable" data-col="views">Daily views<span class="arrow"></span></th>
+          <th class="num sortable" data-col="views_prev_day">Day before<span class="arrow"></span></th>
+          <th class="num sortable" data-col="views_7d_avg">7-day avg<span class="arrow"></span></th>
+          <th class="num sortable" data-col="views_7d_high">7-day high<span class="arrow"></span></th>
+          <th class="num sortable" data-col="views_7d_low">7-day low<span class="arrow"></span></th>
+          <th class="num sortable" data-col="change_pct">Since last run<span class="arrow"></span></th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table></div>
+    </section>
+
+    <section class="card">
+      <h2>★ Your shortlist</h2>
+      <ul id="shortlist" class="moves"></ul>
+    </section>
+  </main>
+  <footer>Click a column header to sort; click again to reverse. Stars are saved in this browser.</footer>
+  <script src="assets/app.js"></script>
+  <script src="assets/browse.js"></script>
+</body>
+</html>
