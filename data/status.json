@@ -1,12 +1,12 @@
 {
-  "run_time": "2026-11-10T20:29:26Z",
-  "run_date": "2026-11-10",
+  "run_time": "2026-11-11T20:14:45Z",
+  "run_date": "2026-11-11",
   "first_run_date": "2026-11-09",
-  "days_with_success": 2,
+  "days_with_success": 3,
   "items": 274,
   "new_today": [],
   "gone_today": [],
-  "previous_date": "2026-11-09",
+  "previous_date": "2026-11-10",
   "sources": [
     {
       "name": "tv",
