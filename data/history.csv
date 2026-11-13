@@ -1095,3 +1095,277 @@ date,item_id,item,source,category,data_date,views,views_prev_day,views_7d_avg,vi
 2026-11-12,you,You,tv,TV,2026-11-11,1841,1939,1988.1,2129,1841,You_(TV_series)
 2026-11-12,your-name,Your Name,movies,Movie,2026-11-11,1629,1682,1690.7,1940,1455,Your_Name
 2026-11-12,zootopia,Zootopia,movies,Movie,2026-11-11,1351,1242,1363.7,1551,1192,Zootopia
+2026-11-13,12-angry-men,12 Angry Men,movies,Movie,2026-11-12,2485,1913,2459.4,4393,1830,12_Angry_Men
+2026-11-13,2001-a-space-odyssey,2001: A Space Odyssey,movies,Movie,2026-11-12,3471,3321,3499.4,4005,3168,2001:_A_Space_Odyssey
+2026-11-13,a-clockwork-orange,A Clockwork Orange,movies,Movie,2026-11-12,3650,3048,3554.0,4156,3048,A_Clockwork_Orange_(film)
+2026-11-13,a-minecraft-movie,A Minecraft Movie,movies,Movie,2026-11-12,1651,1755,1942.9,2544,1651,A_Minecraft_Movie
+2026-11-13,abbott-elementary,Abbott Elementary,tv,TV,2026-11-12,6068,5673,5394.7,6068,5111,Abbott_Elementary
+2026-11-13,adolescence,Adolescence,tv,TV,2026-11-12,2526,2724,2863.6,3336,2526,Adolescence_(TV_series)
+2026-11-13,alien,Alien,movies,Movie,2026-11-12,2715,2804,3109.6,3543,2715,Alien_(film)
+2026-11-13,aliens,Aliens,movies,Movie,2026-11-12,1875,1960,2153.9,2518,1875,Aliens_(film)
+2026-11-13,amadeus,Amadeus,movies,Movie,2026-11-12,1635,1629,1690.6,1842,1586,Amadeus_(film)
+2026-11-13,amelie,Amélie,movies,Movie,2026-11-12,1197,1328,1299.0,1359,1197,Amélie
+2026-11-13,andor,Andor,tv,TV,2026-11-12,2683,2765,2837.4,3153,2465,Andor
+2026-11-13,anora,Anora,movies,Movie,2026-11-12,3174,2731,3723.3,5235,2731,Anora
+2026-11-13,apocalypse-now,Apocalypse Now,movies,Movie,2026-11-12,3331,4059,3600.9,4059,2834,Apocalypse_Now
+2026-11-13,arcane,Arcane,tv,TV,2026-11-12,1822,1977,1969.4,2187,1822,Arcane_(TV_series)
+2026-11-13,arrested-development,Arrested Development,tv,TV,2026-11-12,1835,1905,1980.7,2218,1825,Arrested_Development
+2026-11-13,atlanta,Atlanta,tv,TV,2026-11-12,816,1197,984.3,1197,816,Atlanta_(TV_series)
+2026-11-13,attack-on-titan,Attack on Titan,tv,TV,2026-11-12,3576,3667,3711.4,3975,3526,Attack_on_Titan
+2026-11-13,avatar,Avatar,movies,Movie,2026-11-12,3630,3776,3777.4,4154,3218,Avatar_(2009_film)
+2026-11-13,avatar-the-last-airbender,Avatar: The Last Airbender,tv,TV,2026-11-12,3396,3735,3924.3,4422,3396,Avatar:_The_Last_Airbender
+2026-11-13,avatar-the-way-of-water,Avatar: The Way of Water,movies,Movie,2026-11-12,2228,2196,2252.4,2540,1837,Avatar:_The_Way_of_Water
+2026-11-13,avengers-endgame,Avengers: Endgame,movies,Movie,2026-11-12,9922,10092,8031.3,10092,6719,Avengers:_Endgame
+2026-11-13,avengers-infinity-war,Avengers: Infinity War,movies,Movie,2026-11-12,3099,3165,2852.0,3165,2611,Avengers:_Infinity_War
+2026-11-13,baby-reindeer,Baby Reindeer,tv,TV,2026-11-12,1329,1532,1264.1,1532,1083,Baby_Reindeer
+2026-11-13,back-to-the-future,Back to the Future,movies,Movie,2026-11-12,16985,3935,4989.3,16985,2632,Back_to_the_Future
+2026-11-13,band-of-brothers,Band of Brothers,tv,TV,2026-11-12,9965,7780,5621.6,9965,3786,Band_of_Brothers_(miniseries)
+2026-11-13,barbie,Barbie,movies,Movie,2026-11-12,2405,2102,2442.1,3314,2102,Barbie_(film)
+2026-11-13,barry,Barry,tv,TV,2026-11-12,1559,1553,1758.9,2056,1553,Barry_(TV_series)
+2026-11-13,batman-begins,Batman Begins,movies,Movie,2026-11-12,2301,2564,2555.6,2856,2244,Batman_Begins
+2026-11-13,better-call-saul,Better Call Saul,tv,TV,2026-11-12,4653,4586,4574.7,4752,4385,Better_Call_Saul
+2026-11-13,big-little-lies,Big Little Lies,tv,TV,2026-11-12,2371,2434,2692.6,3513,2228,Big_Little_Lies_(TV_series)
+2026-11-13,black-mirror,Black Mirror,tv,TV,2026-11-12,3063,3319,3382.0,3583,3063,Black_Mirror
+2026-11-13,black-panther,Black Panther,movies,Movie,2026-11-12,2354,2103,2206.7,2354,1871,Black_Panther_(film)
+2026-11-13,blade-runner,Blade Runner,movies,Movie,2026-11-12,5072,5443,5353.0,5706,4517,Blade_Runner
+2026-11-13,blade-runner-2049,Blade Runner 2049,movies,Movie,2026-11-12,5357,5735,5817.9,6624,4735,Blade_Runner_2049
+2026-11-13,boardwalk-empire,Boardwalk Empire,tv,TV,2026-11-12,2383,2562,2501.1,2589,2383,Boardwalk_Empire
+2026-11-13,bojack-horseman,BoJack Horseman,tv,TV,2026-11-12,1591,1241,1499.3,1880,1241,BoJack_Horseman
+2026-11-13,braveheart,Braveheart,movies,Movie,2026-11-12,1799,1918,1898.9,2063,1722,Braveheart
+2026-11-13,breaking-bad,Breaking Bad,tv,TV,2026-11-12,6530,6594,6857.0,7144,6530,Breaking_Bad
+2026-11-13,bridgerton,Bridgerton,tv,TV,2026-11-12,2898,2999,3196.1,3554,2898,Bridgerton
+2026-11-13,brooklyn-nine-nine,Brooklyn Nine-Nine,tv,TV,2026-11-12,2093,2321,2039.0,2331,1766,Brooklyn_Nine-Nine
+2026-11-13,buffy-the-vampire-slayer,Buffy the Vampire Slayer,tv,TV,2026-11-12,2404,2452,2527.9,2766,2404,Buffy_the_Vampire_Slayer
+2026-11-13,casablanca,Casablanca,movies,Movie,2026-11-12,2354,2466,2882.6,5321,2339,Casablanca_(film)
+2026-11-13,cheers,Cheers,tv,TV,2026-11-12,2574,2375,2383.1,2634,2008,Cheers
+2026-11-13,chernobyl,Chernobyl,tv,TV,2026-11-12,2283,2245,2234.7,2425,2061,Chernobyl_(miniseries)
+2026-11-13,citizen-kane,Citizen Kane,movies,Movie,2026-11-12,2341,2289,2386.9,2598,2153,Citizen_Kane
+2026-11-13,cobra-kai,Cobra Kai,tv,TV,2026-11-12,1432,1425,1513.4,1601,1425,Cobra_Kai
+2026-11-13,coco,Coco,movies,Movie,2026-11-12,2567,2504,3304.9,4375,2504,Coco_(2017_film)
+2026-11-13,conclave,Conclave,movies,Movie,2026-11-12,1207,1338,1306.3,1508,1146,Conclave_(film)
+2026-11-13,curb-your-enthusiasm,Curb Your Enthusiasm,tv,TV,2026-11-12,2348,2310,2319.0,2391,2215,Curb_Your_Enthusiasm
+2026-11-13,dark,Dark,tv,TV,2026-11-12,3649,3748,3897.3,4247,3649,Dark_(TV_series)
+2026-11-13,deadpool-wolverine,Deadpool & Wolverine,movies,Movie,2026-11-12,4219,3980,4112.0,4219,3901,Deadpool_&_Wolverine
+2026-11-13,demon-slayer,Demon Slayer,tv,TV,2026-11-12,2724,2557,2541.7,2724,2304,Demon_Slayer:_Kimetsu_no_Yaiba
+2026-11-13,dexter,Dexter,tv,TV,2026-11-12,5933,6310,7007.7,7868,5933,Dexter_(TV_series)
+2026-11-13,die-hard,Die Hard,movies,Movie,2026-11-12,2174,2174,2837.6,3937,2161,Die_Hard
+2026-11-13,django-unchained,Django Unchained,movies,Movie,2026-11-12,4018,2260,3276.3,4347,2260,Django_Unchained
+2026-11-13,doctor-who,Doctor Who,tv,TV,2026-11-12,4242,4689,4435.0,5549,3849,Doctor_Who
+2026-11-13,downton-abbey,Downton Abbey,tv,TV,2026-11-12,3047,2972,3216.6,3861,2938,Downton_Abbey
+2026-11-13,dragon-ball-z,Dragon Ball Z,tv,TV,2026-11-12,1488,1469,1621.0,1870,1469,Dragon_Ball_Z
+2026-11-13,dune,Dune,movies,Movie,2026-11-12,7120,7547,8722.0,13442,7120,Dune_(2021_film)
+2026-11-13,dune-part-two,Dune: Part Two,movies,Movie,2026-11-12,5501,5973,6247.1,7052,5501,Dune:_Part_Two
+2026-11-13,dunkirk,Dunkirk,movies,Movie,2026-11-12,3249,3506,3227.9,3694,2435,Dunkirk_(2017_film)
+2026-11-13,e-t-the-extra-terrestrial,E.T. the Extra-Terrestrial,movies,Movie,2026-11-12,1982,2022,2360.0,2819,1982,E.T._the_Extra-Terrestrial
+2026-11-13,emily-in-paris,Emily in Paris,tv,TV,2026-11-12,2868,2802,1715.4,2868,1199,Emily_in_Paris
+2026-11-13,euphoria,Euphoria,tv,TV,2026-11-12,3192,3034,3297.1,3660,3034,Euphoria_(American_TV_series)
+2026-11-13,everything-everywhere-all-at-once,Everything Everywhere All at Once,movies,Movie,2026-11-12,3299,3513,3406.1,3747,3002,Everything_Everywhere_All_at_Once
+2026-11-13,f1,F1,movies,Movie,2026-11-12,3025,2883,3165.7,3563,2878,F1_(film)
+2026-11-13,fallout,Fallout,tv,TV,2026-11-12,2430,2504,2461.9,2623,2258,Fallout_(American_TV_series)
+2026-11-13,family-guy,Family Guy,tv,TV,2026-11-12,2780,2872,2968.6,3253,2766,Family_Guy
+2026-11-13,fargo,Fargo,tv,TV,2026-11-12,3689,4006,4104.3,4602,3689,Fargo_(TV_series)
+2026-11-13,fight-club,Fight Club,movies,Movie,2026-11-12,2933,2895,3659.1,6654,2895,Fight_Club
+2026-11-13,finding-nemo,Finding Nemo,movies,Movie,2026-11-12,1574,1612,1737.1,1940,1574,Finding_Nemo
+2026-11-13,fleabag,Fleabag,tv,TV,2026-11-12,2504,2716,2424.4,2716,2144,Fleabag
+2026-11-13,forrest-gump,Forrest Gump,movies,Movie,2026-11-12,3830,3317,3311.1,3830,2904,Forrest_Gump
+2026-11-13,frasier,Frasier,tv,TV,2026-11-12,2164,2086,2044.1,2327,1859,Frasier
+2026-11-13,friends,Friends,tv,TV,2026-11-12,5226,5412,5686.1,6143,5226,Friends
+2026-11-13,frozen,Frozen,movies,Movie,2026-11-12,2027,2189,2214.7,2475,2027,Frozen_(2013_film)
+2026-11-13,furiosa,Furiosa,movies,Movie,2026-11-12,1349,1450,1499.9,1705,1349,Furiosa:_A_Mad_Max_Saga
+2026-11-13,game-of-thrones,Game of Thrones,tv,TV,2026-11-12,5783,5677,5760.0,5958,5415,Game_of_Thrones
+2026-11-13,get-out,Get Out,movies,Movie,2026-11-12,3127,3252,3296.6,3430,3127,Get_Out
+2026-11-13,gilmore-girls,Gilmore Girls,tv,TV,2026-11-12,4422,4890,4925.3,5283,4422,Gilmore_Girls
+2026-11-13,ginny-georgia,Ginny & Georgia,tv,TV,2026-11-12,1206,1176,1299.9,1418,1176,Ginny_&_Georgia
+2026-11-13,gladiator,Gladiator,movies,Movie,2026-11-12,3556,3220,3478.7,3894,3037,Gladiator_(2000_film)
+2026-11-13,gladiator-ii,Gladiator II,movies,Movie,2026-11-12,2659,2818,3233.6,4027,2659,Gladiator_II
+2026-11-13,godzilla-minus-one,Godzilla Minus One,movies,Movie,2026-11-12,27805,33840,42595.7,53971,27805,Godzilla_Minus_One
+2026-11-13,good-will-hunting,Good Will Hunting,movies,Movie,2026-11-12,3116,3383,3824.3,4310,3116,Good_Will_Hunting
+2026-11-13,goodfellas,Goodfellas,movies,Movie,2026-11-12,2862,3317,3235.6,3427,2862,Goodfellas
+2026-11-13,grey-s-anatomy,Grey's Anatomy,tv,TV,2026-11-12,8251,8033,8132.4,8445,7864,Grey's_Anatomy
+2026-11-13,guardians-of-the-galaxy,Guardians of the Galaxy,movies,Movie,2026-11-12,2810,3340,2700.1,3546,1971,Guardians_of_the_Galaxy_(film)
+2026-11-13,hacks,Hacks,tv,TV,2026-11-12,1821,1877,1991.7,2197,1821,Hacks
+2026-11-13,harry-potter-and-the-deathly-hallows-part-2,Harry Potter and the Deathly Hallows – Part 2,movies,Movie,2026-11-12,1751,1985,1882.6,2107,1608,Harry_Potter_and_the_Deathly_Hallows_–_Part_2
+2026-11-13,harry-potter-and-the-philosopher-s-stone,Harry Potter and the Philosopher's Stone,movies,Movie,2026-11-12,3058,3215,3446.3,4032,3058,Harry_Potter_and_the_Philosopher's_Stone_(film)
+2026-11-13,heat,Heat,movies,Movie,2026-11-12,4434,4804,5820.1,8163,4434,Heat_(1995_film)
+2026-11-13,hereditary,Hereditary,movies,Movie,2026-11-12,3653,3350,3986.4,4726,3350,Hereditary_(film)
+2026-11-13,home-alone,Home Alone,movies,Movie,2026-11-12,4388,3861,4145.1,4882,3457,Home_Alone
+2026-11-13,house,House,tv,TV,2026-11-12,3266,3437,3252.7,3437,3134,House_(TV_series)
+2026-11-13,house-of-the-dragon,House of the Dragon,tv,TV,2026-11-12,4326,4528,4583.1,4953,4206,House_of_the_Dragon
+2026-11-13,how-i-met-your-mother,How I Met Your Mother,tv,TV,2026-11-12,2498,2411,2427.0,2710,2155,How_I_Met_Your_Mother
+2026-11-13,inception,Inception,movies,Movie,2026-11-12,4221,4352,4654.7,5230,4020,Inception
+2026-11-13,inglourious-basterds,Inglourious Basterds,movies,Movie,2026-11-12,9273,4922,5269.4,9273,4257,Inglourious_Basterds
+2026-11-13,inside-out,Inside Out,movies,Movie,2026-11-12,1198,1206,1333.3,1660,1198,Inside_Out
+2026-11-13,inside-out-2,Inside Out 2,movies,Movie,2026-11-12,1385,1522,1696.9,2355,1385,Inside_Out_2
+2026-11-13,interstellar,Interstellar,movies,Movie,2026-11-12,10334,10150,11534.9,13934,10150,Interstellar_(film)
+2026-11-13,invincible,Invincible,tv,TV,2026-11-12,2170,2244,2214.9,2351,2063,Invincible_(TV_series)
+2026-11-13,iron-man,Iron Man,movies,Movie,2026-11-12,3774,4139,3192.4,4205,2294,Iron_Man_(2008_film)
+2026-11-13,it-s-always-sunny-in-philadelphia,It's Always Sunny in Philadelphia,tv,TV,2026-11-12,3338,3539,3690.4,4004,3338,It's_Always_Sunny_in_Philadelphia
+2026-11-13,jaws,Jaws,movies,Movie,2026-11-12,1895,1994,2101.7,2312,1895,Jaws_(film)
+2026-11-13,john-wick,John Wick,movies,Movie,2026-11-12,2078,2208,3087.9,5057,2078,John_Wick_(film)
+2026-11-13,joker,Joker,movies,Movie,2026-11-12,2400,2536,2534.7,2708,2343,Joker_(2019_film)
+2026-11-13,jujutsu-kaisen,Jujutsu Kaisen,tv,TV,2026-11-12,3102,3309,3273.9,3452,3102,Jujutsu_Kaisen
+2026-11-13,jurassic-park,Jurassic Park,movies,Movie,2026-11-12,2396,2482,2807.7,3856,2396,Jurassic_Park
+2026-11-13,kill-bill-volume-1,Kill Bill: Volume 1,movies,Movie,2026-11-12,1797,1618,1898.1,2165,1618,Kill_Bill:_Volume_1
+2026-11-13,killers-of-the-flower-moon,Killers of the Flower Moon,movies,Movie,2026-11-12,2739,2910,2967.7,3272,2689,Killers_of_the_Flower_Moon
+2026-11-13,killing-eve,Killing Eve,tv,TV,2026-11-12,1429,1448,1435.9,1608,1270,Killing_Eve
+2026-11-13,la-la-land,La La Land,movies,Movie,2026-11-12,2351,2193,2361.3,2667,2193,La_La_Land
+2026-11-13,landman,Landman,tv,TV,2026-11-12,4296,4891,4487.6,4891,4080,Landman_(TV_series)
+2026-11-13,lawrence-of-arabia,Lawrence of Arabia,movies,Movie,2026-11-12,2673,2475,2604.4,3031,2353,Lawrence_of_Arabia_(film)
+2026-11-13,life-is-beautiful,Life Is Beautiful,movies,Movie,2026-11-12,1764,1437,1741.6,2372,1271,Life_Is_Beautiful
+2026-11-13,loki,Loki,tv,TV,2026-11-12,2757,2587,2201.3,2757,1768,Loki_(TV_series)
+2026-11-13,lost,Lost,tv,TV,2026-11-12,2433,2851,2659.7,2904,2421,Lost_(TV_series)
+2026-11-13,lupin,Lupin,tv,TV,2026-11-12,6936,7676,8782.4,10732,6936,Lupin_(French_TV_series)
+2026-11-13,mad-max-fury-road,Mad Max: Fury Road,movies,Movie,2026-11-12,1577,1712,1746.9,1865,1577,Mad_Max:_Fury_Road
+2026-11-13,mad-men,Mad Men,tv,TV,2026-11-12,3475,3992,3291.3,3992,2785,Mad_Men
+2026-11-13,mare-of-easttown,Mare of Easttown,tv,TV,2026-11-12,1428,1507,1586.0,1832,1412,Mare_of_Easttown
+2026-11-13,mean-girls,Mean Girls,movies,Movie,2026-11-12,2127,2188,2226.0,2597,1938,Mean_Girls
+2026-11-13,memento,Memento,movies,Movie,2026-11-12,2542,2710,2881.6,3554,2427,Memento_(film)
+2026-11-13,mindhunter,Mindhunter,tv,TV,2026-11-12,2128,2224,2228.3,2361,2009,Mindhunter_(TV_series)
+2026-11-13,moana,Moana,movies,Movie,2026-11-12,1803,1903,2242.6,2850,1803,Moana_(2016_film)
+2026-11-13,modern-family,Modern Family,tv,TV,2026-11-12,3666,3701,3999.6,4429,3666,Modern_Family
+2026-11-13,money-heist,Money Heist,tv,TV,2026-11-12,1346,1404,1438.9,1503,1346,Money_Heist
+2026-11-13,mr-robot,Mr. Robot,tv,TV,2026-11-12,2022,1515,1607.3,2022,1414,Mr._Robot
+2026-11-13,my-neighbor-totoro,My Neighbor Totoro,movies,Movie,2026-11-12,1429,1345,1587.6,2014,1345,My_Neighbor_Totoro
+2026-11-13,narcos,Narcos,tv,TV,2026-11-12,1042,1062,1085.9,1182,984,Narcos
+2026-11-13,naruto,Naruto,tv,TV,2026-11-12,2320,2338,2358.1,2475,2295,Naruto
+2026-11-13,no-country-for-old-men,No Country for Old Men,movies,Movie,2026-11-12,4608,4400,4463.6,4610,4150,No_Country_for_Old_Men
+2026-11-13,oldboy,Oldboy,movies,Movie,2026-11-12,2266,2763,2243.0,2763,2004,Oldboy_(2003_film)
+2026-11-13,once-upon-a-time-in-hollywood,Once Upon a Time in Hollywood,movies,Movie,2026-11-12,6499,7026,7602.4,8651,6499,Once_Upon_a_Time_in_Hollywood
+2026-11-13,one-battle-after-another,One Battle After Another,movies,Movie,2026-11-12,5862,5332,6024.1,7352,5154,One_Battle_After_Another
+2026-11-13,one-piece-2023,One Piece (2023),tv,TV,2026-11-12,2084,2315,2237.9,2424,2084,One_Piece_(2023_TV_series)
+2026-11-13,only-murders-in-the-building,Only Murders in the Building,tv,TV,2026-11-12,3336,3701,3551.6,3951,3169,Only_Murders_in_the_Building
+2026-11-13,oppenheimer,Oppenheimer,movies,Movie,2026-11-12,5524,5524,5786.7,6801,4768,Oppenheimer_(film)
+2026-11-13,outer-banks,Outer Banks,tv,TV,2026-11-12,1469,1566,1517.7,1566,1469,Outer_Banks_(TV_series)
+2026-11-13,ozark,Ozark,tv,TV,2026-11-12,2751,2492,2616.7,3243,2118,Ozark_(TV_series)
+2026-11-13,pan-s-labyrinth,Pan's Labyrinth,movies,Movie,2026-11-12,2035,2750,2048.7,2750,1563,Pan's_Labyrinth
+2026-11-13,parasite,Parasite,movies,Movie,2026-11-12,2882,2978,3084.0,3602,2726,Parasite_(2019_film)
+2026-11-13,parks-and-recreation,Parks and Recreation,tv,TV,2026-11-12,2551,2696,2790.1,3589,2505,Parks_and_Recreation
+2026-11-13,peaky-blinders,Peaky Blinders,tv,TV,2026-11-12,4138,4310,4371.9,4646,4134,Peaky_Blinders_(TV_series)
+2026-11-13,pirates-of-the-caribbean,Pirates of the Caribbean,movies,Movie,2026-11-12,1987,1880,2130.1,2592,1864,Pirates_of_the_Caribbean:_The_Curse_of_the_Black_Pearl
+2026-11-13,poor-things,Poor Things,movies,Movie,2026-11-12,1884,2015,2311.9,2861,1884,Poor_Things_(film)
+2026-11-13,princess-mononoke,Princess Mononoke,movies,Movie,2026-11-12,1679,1711,1897.0,2310,1584,Princess_Mononoke
+2026-11-13,prison-break,Prison Break,tv,TV,2026-11-12,2327,4155,2172.3,4155,1603,Prison_Break
+2026-11-13,psycho,Psycho,movies,Movie,2026-11-12,2000,2019,2193.0,2445,2000,Psycho_(1960_film)
+2026-11-13,pulp-fiction,Pulp Fiction,movies,Movie,2026-11-12,3750,3245,3763.6,4770,3151,Pulp_Fiction
+2026-11-13,raiders-of-the-lost-ark,Raiders of the Lost Ark,movies,Movie,2026-11-12,2089,1929,2292.4,2672,1929,Raiders_of_the_Lost_Ark
+2026-11-13,reacher,Reacher,tv,TV,2026-11-12,4188,4375,4696.6,5403,4188,Reacher_(TV_series)
+2026-11-13,rear-window,Rear Window,movies,Movie,2026-11-12,1114,988,1055.1,1192,909,Rear_Window
+2026-11-13,reservoir-dogs,Reservoir Dogs,movies,Movie,2026-11-12,2010,1883,1992.4,2252,1864,Reservoir_Dogs
+2026-11-13,return-of-the-jedi,Return of the Jedi,movies,Movie,2026-11-12,1486,1278,1362.3,1486,1231,Return_of_the_Jedi
+2026-11-13,rick-and-morty,Rick and Morty,tv,TV,2026-11-12,2438,2325,2388.0,2544,2199,Rick_and_Morty
+2026-11-13,rocky,Rocky,movies,Movie,2026-11-12,12189,11007,11329.0,12563,10029,Rocky
+2026-11-13,saving-private-ryan,Saving Private Ryan,movies,Movie,2026-11-12,4204,5794,3645.0,5794,2705,Saving_Private_Ryan
+2026-11-13,scarface,Scarface,movies,Movie,2026-11-12,3142,3010,3267.0,4041,2937,Scarface_(1983_film)
+2026-11-13,schindler-s-list,Schindler's List,movies,Movie,2026-11-12,2767,3053,2978.3,3172,2673,Schindler's_List
+2026-11-13,schitt-s-creek,Schitt's Creek,tv,TV,2026-11-12,2294,2285,2245.6,2400,2094,Schitt's_Creek
+2026-11-13,se7en,Se7en,movies,Movie,2026-11-12,3343,3156,3343.6,3928,2975,Seven_(1995_film)
+2026-11-13,seinfeld,Seinfeld,tv,TV,2026-11-12,3125,3023,3018.7,3125,2890,Seinfeld
+2026-11-13,seven-samurai,Seven Samurai,movies,Movie,2026-11-12,1200,1219,1242.9,1326,1091,Seven_Samurai
+2026-11-13,severance,Severance,tv,TV,2026-11-12,5760,5932,6104.4,6494,5760,Severance_(TV_series)
+2026-11-13,sex-and-the-city,Sex and the City,tv,TV,2026-11-12,2820,2865,3002.0,3359,2820,Sex_and_the_City
+2026-11-13,sherlock,Sherlock,tv,TV,2026-11-12,1609,1732,1789.7,2005,1609,Sherlock_(TV_series)
+2026-11-13,shogun,Shōgun,tv,TV,2026-11-12,2751,3052,2952.1,3253,2683,Shōgun_(2024_TV_series)
+2026-11-13,shrek,Shrek,movies,Movie,2026-11-12,2572,2316,2457.0,2572,2316,Shrek
+2026-11-13,shrinking,Shrinking,tv,TV,2026-11-12,2209,2151,2184.7,2376,1915,Shrinking
+2026-11-13,silicon-valley,Silicon Valley,tv,TV,2026-11-12,1569,1409,1518.7,1783,1326,Silicon_Valley_(TV_series)
+2026-11-13,sinners,Sinners,movies,Movie,2026-11-12,7018,6511,7831.1,9719,6511,Sinners_(2025_film)
+2026-11-13,slow-horses,Slow Horses,tv,TV,2026-11-12,19054,20574,22289.3,25516,19054,Slow_Horses
+2026-11-13,south-park,South Park,tv,TV,2026-11-12,10164,7601,7555.3,10164,6696,South_Park
+2026-11-13,spider-man-across-the-spider-verse,Spider-Man: Across the Spider-Verse,movies,Movie,2026-11-12,2219,2221,2290.3,2514,2095,Spider-Man:_Across_the_Spider-Verse
+2026-11-13,spider-man-into-the-spider-verse,Spider-Man: Into the Spider-Verse,movies,Movie,2026-11-12,2102,2215,2209.0,2476,2068,Spider-Man:_Into_the_Spider-Verse
+2026-11-13,spider-man-no-way-home,Spider-Man: No Way Home,movies,Movie,2026-11-12,4296,3972,4006.6,5017,3286,Spider-Man:_No_Way_Home
+2026-11-13,spirited-away,Spirited Away,movies,Movie,2026-11-12,2453,2771,2728.7,3058,2419,Spirited_Away
+2026-11-13,squid-game,Squid Game,tv,TV,2026-11-12,2227,2237,2333.4,2545,2136,Squid_Game
+2026-11-13,star-trek-the-next-generation,Star Trek: The Next Generation,tv,TV,2026-11-12,4514,4738,5123.6,5766,4514,Star_Trek:_The_Next_Generation
+2026-11-13,star-wars,Star Wars,movies,Movie,2026-11-12,5579,3051,3590.3,5579,3051,Star_Wars_(film)
+2026-11-13,star-wars-the-force-awakens,Star Wars: The Force Awakens,movies,Movie,2026-11-12,2219,2402,2235.4,2402,2009,Star_Wars:_The_Force_Awakens
+2026-11-13,stranger-things,Stranger Things,tv,TV,2026-11-12,5301,5804,8203.7,14901,5301,Stranger_Things
+2026-11-13,succession,Succession,tv,TV,2026-11-12,4144,4282,4328.6,4526,4144,Succession_(TV_series)
+2026-11-13,suits,Suits,tv,TV,2026-11-12,2481,2545,2651.3,2802,2481,Suits_(American_TV_series)
+2026-11-13,superman-2025,Superman (2025),movies,Movie,2026-11-12,11851,17063,10626.9,20781,3986,Superman_(2025_film)
+2026-11-13,taxi-driver,Taxi Driver,movies,Movie,2026-11-12,2610,2695,2554.4,2695,2277,Taxi_Driver
+2026-11-13,ted-lasso,Ted Lasso,tv,TV,2026-11-12,9863,10008,10665.9,11992,9863,Ted_Lasso
+2026-11-13,tenet,Tenet,movies,Movie,2026-11-12,3411,3487,3846.7,4616,2802,Tenet
+2026-11-13,terminator-2-judgment-day,Terminator 2: Judgment Day,movies,Movie,2026-11-12,2429,2249,2430.3,2792,2232,Terminator_2:_Judgment_Day
+2026-11-13,the-avengers,The Avengers,movies,Movie,2026-11-12,3486,3615,3149.1,3615,2563,The_Avengers_(2012_film)
+2026-11-13,the-batman,The Batman,movies,Movie,2026-11-12,5258,6780,5935.4,8387,3917,The_Batman_(film)
+2026-11-13,the-bear,The Bear,tv,TV,2026-11-12,3367,3512,3543.4,3760,3367,The_Bear_(TV_series)
+2026-11-13,the-big-bang-theory,The Big Bang Theory,tv,TV,2026-11-12,4443,4549,4623.3,4973,4443,The_Big_Bang_Theory
+2026-11-13,the-boy-and-the-heron,The Boy and the Heron,movies,Movie,2026-11-12,1769,2031,2104.1,2522,1769,The_Boy_and_the_Heron
+2026-11-13,the-boys,The Boys,tv,TV,2026-11-12,2735,2863,2881.4,2995,2735,The_Boys_(TV_series)
+2026-11-13,the-brutalist,The Brutalist,movies,Movie,2026-11-12,2296,2430,2656.1,3314,2233,The_Brutalist
+2026-11-13,the-crown,The Crown,tv,TV,2026-11-12,2776,2770,2992.6,3414,2770,The_Crown_(TV_series)
+2026-11-13,the-dark-knight,The Dark Knight,movies,Movie,2026-11-12,3636,3992,3921.6,4243,3568,The_Dark_Knight
+2026-11-13,the-dark-knight-rises,The Dark Knight Rises,movies,Movie,2026-11-12,3124,3168,3247.9,3661,2823,The_Dark_Knight_Rises
+2026-11-13,the-departed,The Departed,movies,Movie,2026-11-12,3163,3050,3239.6,3712,2727,The_Departed
+2026-11-13,the-diplomat,The Diplomat,tv,TV,2026-11-12,17190,18688,20383.7,23176,17190,The_Diplomat_(American_TV_series)
+2026-11-13,the-empire-strikes-back,The Empire Strikes Back,movies,Movie,2026-11-12,1682,1425,1562.7,1682,1425,The_Empire_Strikes_Back
+2026-11-13,the-exorcist,The Exorcist,movies,Movie,2026-11-12,2710,2712,3297.1,3633,2710,The_Exorcist
+2026-11-13,the-fellowship-of-the-ring,The Fellowship of the Ring,movies,Movie,2026-11-12,3459,3352,3509.0,4440,2845,The_Lord_of_the_Rings:_The_Fellowship_of_the_Ring
+2026-11-13,the-fresh-prince-of-bel-air,The Fresh Prince of Bel-Air,tv,TV,2026-11-12,2967,3686,2736.9,3686,2307,The_Fresh_Prince_of_Bel-Air
+2026-11-13,the-godfather,The Godfather,movies,Movie,2026-11-12,4999,5003,5278.9,5597,4947,The_Godfather
+2026-11-13,the-godfather-part-ii,The Godfather Part II,movies,Movie,2026-11-12,2708,2643,2780.7,3319,2413,The_Godfather_Part_II
+2026-11-13,the-good-place,The Good Place,tv,TV,2026-11-12,1746,1896,1809.0,2039,1664,The_Good_Place
+2026-11-13,the-good-the-bad-and-the-ugly,"The Good, the Bad and the Ugly",movies,Movie,2026-11-12,1615,1635,1774.6,2258,1578,"The_Good,_the_Bad_and_the_Ugly"
+2026-11-13,the-grand-budapest-hotel,The Grand Budapest Hotel,movies,Movie,2026-11-12,2129,2790,2233.9,2790,1973,The_Grand_Budapest_Hotel
+2026-11-13,the-green-mile,The Green Mile,movies,Movie,2026-11-12,3244,5884,3719.4,5884,2561,The_Green_Mile_(film)
+2026-11-13,the-handmaid-s-tale,The Handmaid's Tale,tv,TV,2026-11-12,3495,3625,3904.6,4465,3495,The_Handmaid's_Tale_(TV_series)
+2026-11-13,the-hunger-games,The Hunger Games,movies,Movie,2026-11-12,6961,7035,7182.7,8535,5954,The_Hunger_Games_(film)
+2026-11-13,the-last-of-us,The Last of Us,tv,TV,2026-11-12,3222,3150,3228.4,3405,3047,The_Last_of_Us_(TV_series)
+2026-11-13,the-lion-king,The Lion King,movies,Movie,2026-11-12,2455,2624,2885.7,3434,2455,The_Lion_King
+2026-11-13,the-mandalorian,The Mandalorian,tv,TV,2026-11-12,1715,1538,1683.4,1861,1538,The_Mandalorian
+2026-11-13,the-matrix,The Matrix,movies,Movie,2026-11-12,4444,3527,3897.1,4444,3485,The_Matrix
+2026-11-13,the-morning-show,The Morning Show,tv,TV,2026-11-12,2032,1923,1970.1,2127,1829,The_Morning_Show_(American_TV_series)
+2026-11-13,the-office-us,The Office (US),tv,TV,2026-11-12,4397,4507,4548.4,4798,4397,The_Office_(American_TV_series)
+2026-11-13,the-penguin,The Penguin,tv,TV,2026-11-12,1858,2560,2121.7,2761,1624,The_Penguin_(TV_series)
+2026-11-13,the-pianist,The Pianist,movies,Movie,2026-11-12,1567,1509,1659.0,2015,1403,The_Pianist_(2002_film)
+2026-11-13,the-pitt,The Pitt,tv,TV,2026-11-12,5588,5680,6174.4,7445,5578,The_Pitt
+2026-11-13,the-prestige,The Prestige,movies,Movie,2026-11-12,4450,4771,5025.7,6029,4450,The_Prestige
+2026-11-13,the-queen-s-gambit,The Queen's Gambit,tv,TV,2026-11-12,1710,1802,1944.9,2101,1710,The_Queen's_Gambit_(miniseries)
+2026-11-13,the-return-of-the-king,The Return of the King,movies,Movie,2026-11-12,2298,2292,2352.6,2907,1929,The_Lord_of_the_Rings:_The_Return_of_the_King
+2026-11-13,the-rings-of-power,The Rings of Power,tv,TV,2026-11-12,55865,49831,22157.3,55865,7952,The_Lord_of_the_Rings:_The_Rings_of_Power
+2026-11-13,the-sandman,The Sandman,tv,TV,2026-11-12,1382,1424,1492.6,1644,1382,The_Sandman_(TV_series)
+2026-11-13,the-shawshank-redemption,The Shawshank Redemption,movies,Movie,2026-11-12,4058,7421,4738.4,7421,4058,The_Shawshank_Redemption
+2026-11-13,the-shining,The Shining,movies,Movie,2026-11-12,3624,3826,4461.1,5224,3624,The_Shining_(film)
+2026-11-13,the-silence-of-the-lambs,The Silence of the Lambs,movies,Movie,2026-11-12,3317,3693,3896.7,4721,3317,The_Silence_of_the_Lambs_(film)
+2026-11-13,the-simpsons,The Simpsons,tv,TV,2026-11-12,4563,4815,5023.0,5801,4563,The_Simpsons
+2026-11-13,the-sixth-sense,The Sixth Sense,movies,Movie,2026-11-12,3058,3283,3759.0,4746,3058,The_Sixth_Sense
+2026-11-13,the-social-network,The Social Network,movies,Movie,2026-11-12,2473,2214,2355.6,2576,2214,The_Social_Network
+2026-11-13,the-sopranos,The Sopranos,tv,TV,2026-11-12,6072,6220,6048.9,6220,5714,The_Sopranos
+2026-11-13,the-studio,The Studio,tv,TV,2026-11-12,1419,1546,1507.6,1931,1296,The_Studio_(TV_series)
+2026-11-13,the-substance,The Substance,movies,Movie,2026-11-12,3036,3404,3745.4,4296,3036,The_Substance
+2026-11-13,the-terminator,The Terminator,movies,Movie,2026-11-12,2821,2629,2732.7,2922,2600,The_Terminator
+2026-11-13,the-truman-show,The Truman Show,movies,Movie,2026-11-12,2661,2573,2721.6,2957,2548,The_Truman_Show
+2026-11-13,the-twilight-zone,The Twilight Zone,tv,TV,2026-11-12,3828,2734,2710.6,3828,2171,The_Twilight_Zone
+2026-11-13,the-two-towers,The Two Towers,movies,Movie,2026-11-12,1704,1599,1812.7,2277,1482,The_Lord_of_the_Rings:_The_Two_Towers
+2026-11-13,the-umbrella-academy,The Umbrella Academy,tv,TV,2026-11-12,982,1116,1121.3,1273,982,The_Umbrella_Academy_(TV_series)
+2026-11-13,the-walking-dead,The Walking Dead,tv,TV,2026-11-12,4495,4665,4703.3,5104,4450,The_Walking_Dead_(TV_series)
+2026-11-13,the-white-lotus,The White Lotus,tv,TV,2026-11-12,4913,4980,5185.1,5710,4913,The_White_Lotus
+2026-11-13,the-wire,The Wire,tv,TV,2026-11-12,4044,3688,3771.6,4044,3604,The_Wire
+2026-11-13,the-witcher,The Witcher,tv,TV,2026-11-12,2726,3104,2829.0,3104,2428,The_Witcher_(TV_series)
+2026-11-13,the-wizard-of-oz,The Wizard of Oz,movies,Movie,2026-11-12,3994,3601,3354.1,3994,2738,The_Wizard_of_Oz
+2026-11-13,the-wolf-of-wall-street,The Wolf of Wall Street,movies,Movie,2026-11-12,2766,2687,2703.9,2870,2515,The_Wolf_of_Wall_Street_(2013_film)
+2026-11-13,the-x-files,The X-Files,tv,TV,2026-11-12,3444,3373,3550.7,3956,3365,The_X-Files
+2026-11-13,there-will-be-blood,There Will Be Blood,movies,Movie,2026-11-12,2802,2735,3014.3,4085,2552,There_Will_Be_Blood
+2026-11-13,titanic,Titanic,movies,Movie,2026-11-12,4134,4200,4130.3,4281,3849,Titanic_(1997_film)
+2026-11-13,top-gun-maverick,Top Gun: Maverick,movies,Movie,2026-11-12,3581,3280,3408.9,3646,2997,Top_Gun:_Maverick
+2026-11-13,toy-story,Toy Story,movies,Movie,2026-11-12,2171,1985,2231.1,2585,1977,Toy_Story
+2026-11-13,true-detective,True Detective,tv,TV,2026-11-12,3232,3367,3382.4,3681,3128,True_Detective
+2026-11-13,tulsa-king,Tulsa King,tv,TV,2026-11-12,8041,8394,9838.9,11813,8041,Tulsa_King
+2026-11-13,twilight,Twilight,movies,Movie,2026-11-12,1514,1526,1810.0,2266,1514,Twilight_(2008_film)
+2026-11-13,twin-peaks,Twin Peaks,tv,TV,2026-11-12,5654,5854,6222.0,7266,5509,Twin_Peaks
+2026-11-13,up,Up,movies,Movie,2026-11-12,1610,1466,1647.9,1859,1409,Up_(2009_film)
+2026-11-13,veep,Veep,tv,TV,2026-11-12,2394,2315,2721.9,3168,2306,Veep
+2026-11-13,vertigo,Vertigo,movies,Movie,2026-11-12,1506,1458,1598.6,1806,1458,Vertigo_(film)
+2026-11-13,vikings,Vikings,tv,TV,2026-11-12,1686,1769,1629.0,1769,1464,Vikings_(TV_series)
+2026-11-13,wall-e,WALL-E,movies,Movie,2026-11-12,1587,1621,1730.3,1996,1587,WALL-E
+2026-11-13,wandavision,WandaVision,tv,TV,2026-11-12,7627,8807,4609.4,8807,2968,WandaVision
+2026-11-13,wednesday,Wednesday,tv,TV,2026-11-12,3322,3570,3507.0,3833,3109,Wednesday_(TV_series)
+2026-11-13,westworld,Westworld,tv,TV,2026-11-12,1902,1950,2006.6,2143,1902,Westworld_(TV_series)
+2026-11-13,whiplash,Whiplash,movies,Movie,2026-11-12,3791,3418,3551.4,3869,3145,Whiplash_(2014_film)
+2026-11-13,wicked,Wicked,movies,Movie,2026-11-12,2101,1947,2484.3,3606,1947,Wicked_(2024_film)
+2026-11-13,yellowjackets,Yellowjackets,tv,TV,2026-11-12,7492,5903,6439.6,7492,5903,Yellowjackets_(TV_series)
+2026-11-13,yellowstone,Yellowstone,tv,TV,2026-11-12,4586,4699,4477.6,4749,3909,Yellowstone_(TV_series)
+2026-11-13,you,You,tv,TV,2026-11-12,1847,1841,1972.6,2129,1841,You_(TV_series)
+2026-11-13,your-name,Your Name,movies,Movie,2026-11-12,1503,1629,1697.6,1940,1503,Your_Name
+2026-11-13,zootopia,Zootopia,movies,Movie,2026-11-12,1432,1351,1398.0,1551,1242,Zootopia
